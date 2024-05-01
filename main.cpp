@@ -3,8 +3,10 @@
 #include "Staff.h"
 
 int main() {
-    Person p1("Anas", 20);
-    Staff s1("police",1200);
+    Person p1;
+    p1.setFullName("Anas Fateen");
+    cout<<p1.getFullName();
+
 
     return 0;
 }

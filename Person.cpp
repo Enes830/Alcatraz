@@ -3,11 +3,21 @@
 #include <string>
 using namespace std;
 
-Person::Person(string name, int age) {
-    this->name = name;
-    this->age = age;
+Person::Person() {
+
 }
 
 Person::~Person() {
-    cout << "Destructor called for " << name << endl;
+
+}
+void Person::setFullName(string fullName){
+    this -> fullName = fullName;
+}
+
+void Person::setAge(int age){
+    this -> age = age;
+}
+
+string Person::getFullName(){
+    return fullName;
 }
