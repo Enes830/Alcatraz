@@ -3,9 +3,8 @@
 #include "Staff.h"
 
 int main() {
-    Person p1;
-    p1.setFullName("Anas Fateen");
-    cout<<p1.getFullName();
+    Staff s1("Anas Fateen","p-001","Egyption",20,180,60,"manager",5000,"istanbul",2023);
+    s1.displayInfo();
 
 
     return 0;

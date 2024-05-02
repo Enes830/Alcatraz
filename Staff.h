@@ -5,10 +5,13 @@ using namespace std;
 
 class Staff : public Person{
     public:
-        Staff(string job,int salary);
+        Staff();
+        Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined);
         virtual ~Staff();
+
+        void displayInfo();
     private:
-        string job;
-        int salary;
+        string job,address;
+        int salary,yearJoined;
 
 };

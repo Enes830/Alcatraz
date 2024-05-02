@@ -6,18 +6,45 @@ using namespace std;
 Person::Person() {
 
 }
+Person::Person(string fullName,string id,string nationality,int age,float height ,float weight){
+    this -> fullName = fullName;
+    this -> id = id;
+    this -> nationality = nationality;
+    this -> age = age;
+    this -> height = height;
+    this -> weight = weight;
+}
 
 Person::~Person() {
 
 }
+
+void Person::setAll(string fullName,string id,string nationality,int age,float height ,float weight){
+    this -> fullName = fullName;
+    this -> id = id;
+    this -> nationality = nationality;
+    this -> age = age;
+    this -> height = height;
+    this -> weight = weight;
+}
+
+void Person::displayInfo(){
+    cout<<"Full Name: "<<fullName<<endl;
+    cout<<"ID: "<<id<<endl;
+    cout<<"Nationality: "<<nationality<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Height: "<<height<<endl;
+    cout<<"Weight: "<<weight<<endl;    
+}
+
 void Person::setFullName(string fullName){
     this -> fullName = fullName;
 }
 
-void Person::setAge(int age){
-    this -> age = age;
-}
-
 string Person::getFullName(){
     return fullName;
+}
+
+void Person::setAge(int age){
+    this -> age = age;
 }

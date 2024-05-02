@@ -3,11 +3,26 @@
 #include "Staff.h"
 using namespace std;
 
-Staff::Staff(string job, int salary) : Person("Default Name", 0) {
+
+Staff::Staff(){}
+Staff::Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined){
+    Person::setAll(fullName,id,nationality,age,height,weight);
     this->salary = salary;
     this->job = job;
+    this -> address = address;
+    this -> yearJoined = yearJoined;
 }
 
 Staff::~Staff() {
     cout << "Destructor called for Staff with job: " << job << endl;
+}
+
+
+void Staff::displayInfo(){
+    Person::displayInfo();
+    cout<<"Job: "<<job<<endl;
+    cout<<"Salary: "<<salary<<endl;
+    cout<<"Address: "<<address<<endl;
+    cout<<"Year Joined: "<<yearJoined<<endl;
+
 }

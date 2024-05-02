@@ -7,6 +7,7 @@ using namespace std;
 class Person {
 public:
     Person();
+    Person(string fullName,string id,string nationality,int age,float height ,float weight);
     virtual ~Person();
     void setFullName(string fullName);
     void setAge(int age);
@@ -14,9 +15,12 @@ public:
     void setHeight(float height);
     void setWeight(float weight);
     void setNationality(string nationality);
+    void displayInfo();
+    void setAll(string fullName,string id,string nationality,int age,float height ,float weight);
     string getFullName();
     int getAge();
     string getId();
+
 
 private:
     int age;
