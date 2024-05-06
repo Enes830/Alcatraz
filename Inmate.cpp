@@ -30,7 +30,7 @@ void Inmate::displayInfo(){
     cout << "Dead: " << (isAlive? "No" : "Yes") << endl;
 }
 
-bool isPersonAlive(Inmate& Inmate) {
-    cout << "Checking person's status..." << endl;
-    return Inmate.getAlive();
-}
+// bool isPersonAlive(Inmate& Inmate) {
+//     cout << "Checking person's status..." << endl;
+//     return Inmate.getAlive();
+// }

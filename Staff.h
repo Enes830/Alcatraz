@@ -8,7 +8,9 @@ class Staff : public Person{
         Staff();
         Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined);
         virtual ~Staff();
-
+        void incrementSalary(double percentage);
+        void incrementSalary(double percentage,int monthlyBonus);
+        void incrementSalary(int monthlyBonus);
         void displayInfo();
     private:
         string job,address;

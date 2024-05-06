@@ -22,8 +22,20 @@ void Staff::displayInfo(){
     cout<<endl;
     Person::displayInfo();
     cout<<"Job: "<<job<<endl;
-    cout<<"Salary: "<<salary<<endl;
+    cout<<"Salary: "<<salary<<" $"<<endl;
     cout<<"Address: "<<address<<endl;
     cout<<"Year Joined: "<<yearJoined<<endl;
 
+}
+void Staff::incrementSalary(double percentage){
+    if (percentage>0)
+        salary *=percentage;
+}
+void Staff::incrementSalary(int monthlyBonus){
+    if (monthlyBonus>0)
+        salary += monthlyBonus;
+}
+void Staff::incrementSalary(double percentage,int monthlyBonus){
+    incrementSalary(percentage);
+    incrementSalary(monthlyBonus);
 }
