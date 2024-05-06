@@ -19,6 +19,7 @@ Staff::~Staff() {
 
 
 void Staff::displayInfo(){
+    cout<<endl;
     Person::displayInfo();
     cout<<"Job: "<<job<<endl;
     cout<<"Salary: "<<salary<<endl;

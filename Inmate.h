@@ -8,7 +8,7 @@ using namespace std;
 class Inmate : public Person {
     public:
         Inmate();
-        Inmate(string fullName,string id,string nationality,int age,float height ,float weight,string address);
+        Inmate(string fullName,string id,string nationality,int age,float height ,float weight,string address,string cage,string senteceStart,int sentenceLenght,string felony,bool isAlive);
         virtual ~Inmate();
         void setCage(string cage);
         void setSentenceStart(string sentenceStart);
