@@ -6,27 +6,32 @@ using namespace std;
 
 class Person {
 public:
+    //Constructor:
     Person();
     Person(string fullName,string id,string nationality,int age,float height ,float weight);
+    //deconstructor:
     virtual ~Person();
+    //Declaring Setters:
     void setFullName(string fullName);
-    void setAge(int age);
     void setId(string id);
+    void setNationality(string nationality);
+    void setAge(int age);
     void setHeight(float height);
     void setWeight(float weight);
-    void setNationality(string nationality);
+    //Declaring Getters:
+    string getFullName();
+    string getId();
+    string getNationality();
+    int getAge();
+    //Declaring Functions:
+    void addPerson();
     void displayInfo();
     void setAll(string fullName,string id,string nationality,int age,float height ,float weight);
-    string getFullName();
-    int getAge();
-    string getId();
-
-
 private:
+    //Declaring Attributes:
     int age;
     float height, weight;
     string fullName,id,nationality;
-
 };
 
-#endif // PERSON_H
+#endif

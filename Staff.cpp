@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
 #include "Staff.h"
+#include "Person.h"
+
 using namespace std;
 
 
@@ -38,4 +40,16 @@ void Staff::incrementSalary(int monthlyBonus){
 void Staff::incrementSalary(double percentage,int monthlyBonus){
     incrementSalary(percentage);
     incrementSalary(monthlyBonus);
+}
+
+void Staff::addPerson(){
+    Person::addPerson();
+    cout<<"Enter job: ";
+    cin>>job;
+    cout<<"Enter salary: ";
+    cin>>salary;
+    cout<<"Enter address: ";
+    cin>>address;
+    cout<<"Enter yearJoined: ";
+    cin>>yearJoined;
 }

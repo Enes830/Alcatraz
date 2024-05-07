@@ -45,6 +45,53 @@ string Person::getFullName(){
     return fullName;
 }
 
+void Person::setId(string id){
+    this -> id = id;
+
+}
+
+string Person::getId(){
+    return id;
+
+}
+
+void Person::setNationality(string nationality){
+    this -> nationality = nationality;
+
+}
+
+string Person::getNationality(){
+    return nationality;
+
+}
+
+
 void Person::setAge(int age){
     this -> age = age;
 }
+
+int Person::getAge(){
+    return age;
+}
+
+void Person::addPerson(){
+cout<<"Enter full name: ";
+cin>>fullName;
+
+cout<<"Enter id: ";
+cin>>id;
+
+cout<<"Enter Nationality: ";
+cin>>nationality;
+
+cout<<"Enter age: ";
+cin>>age;
+
+cout<<"Enter height: ";
+cin>>height;
+
+cout<<"Enter weight: ";
+cin>>weight;
+}
+
+
