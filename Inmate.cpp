@@ -10,15 +10,40 @@ Inmate::Inmate(){}
 Inmate::Inmate(string fullName,string id,string nationality,int age,float height ,float weight,string felony,string cage,string sentenceStart,int sentenceLength){
     Person::setAll(fullName,id,nationality,age,height,weight);
     this -> felony = felony;
-    this->cage = cage;
-    this->sentenceStart = sentenceStart;
+    this -> cage = cage;
+    this -> sentenceStart = sentenceStart;
     this -> sentenceLength = sentenceLength;
 }
 
-Inmate::~Inmate() {
-    cout << "Destructor called for Inmate"<< endl;
-}
+Inmate::~Inmate() {}
 
+void Inmate::setFelony(string felony){
+    this -> felony = felony;
+}
+string Inmate::getFelony(){
+    return felony;
+};
+
+void Inmate::setCage(string cage){
+    this -> cage = cage;
+}
+string Inmate::getCage(){
+    return cage;
+};
+
+void Inmate::setSentenceStart(string sentenceStart){
+    this -> sentenceStart = sentenceStart;
+}
+string Inmate::getSentenceStart(){
+    return sentenceStart;
+};
+
+void Inmate::setSentenceLength(int sentenceLength){
+    this -> sentenceLength = sentenceLength;
+}
+int Inmate::getSentenceLength(){
+    return sentenceLength;
+};
 
 void Inmate::displayInfo(){
     cout<<endl;

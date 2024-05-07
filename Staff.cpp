@@ -15,9 +15,44 @@ Staff::Staff(string fullName,string id,string nationality,int age,float height ,
     this -> yearJoined = yearJoined;
 }
 
-Staff::~Staff() {
-    cout << "Destructor called for Staff with job: " << job << endl;
+Staff::~Staff() {}
+
+void Staff::setJob(string job){
+    this -> job = job;
 }
+string Staff::getJob(){
+    return job;
+}
+
+void Staff::setAddress(string address){
+    this -> address = address;
+}
+string Staff::getAddress(){
+    return address;
+}
+
+void Staff::setSalary(int salary){
+    this -> salary = salary;
+}
+int Staff::getSalary(){
+    return salary;
+}
+
+void Staff::setYearJoined(int yearJoined){
+    this -> yearJoined = yearJoined;
+}
+int Staff::getYearJoined(){
+    return yearJoined;
+}
+
+
+
+
+
+
+
+
+
 
 
 void Staff::displayInfo(){
@@ -44,12 +79,16 @@ void Staff::incrementSalary(double percentage,int monthlyBonus){
 
 void Staff::addPerson(){
     Person::addPerson();
+
     cout<<"Enter job: ";
     cin>>job;
+
     cout<<"Enter salary: ";
     cin>>salary;
+
     cout<<"Enter address: ";
     cin>>address;
+    
     cout<<"Enter yearJoined: ";
     cin>>yearJoined;
 }
