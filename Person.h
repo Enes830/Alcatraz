@@ -27,6 +27,10 @@ public:
     void addPerson();
     void displayInfo();
     void setAll(string fullName,string id,string nationality,int age,float height ,float weight);
+    void writeDataToFile();
+    void readDataFromFile();
+    void updateDataInFile();
+    void removeDataFromFile();
 private:
     //Declaring Attributes:
     int age;

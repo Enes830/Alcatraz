@@ -1,5 +1,6 @@
-#include <string>
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "Inmate.h"
 #include "Person.h"
 
@@ -69,4 +70,25 @@ cin>>sentenceStart;
 cout<<"Enter sentenceLength: ";
 cin>>sentenceLength;
 }
+/*
+//FILE HANDLING:
+void writeDataToFile() {
+    // Implementation for writing data to the file
+    // ...
+}
 
+void readDataFromFile() {
+    // Implementation for reading data from the file
+    // ...
+}
+
+void updateDataInFile() {
+    // Implementation for updating data in the file
+    // ...
+}
+
+void removeDataFromFile() {
+    // Implementation for removing data from the file
+    // ...
+}
+*/

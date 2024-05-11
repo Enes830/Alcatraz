@@ -1,6 +1,7 @@
-#include "Person.h"
 #include <iostream>
+#include <fstream>
 #include <string>
+#include "Person.h"
 using namespace std;
 
 Person::Person() {
@@ -95,3 +96,55 @@ cin>>weight;
 }
 
 
+//FILE HANDLING:
+void Person::writeDataToFile() {
+    ofstream outFile("data/people.txt");
+    if (outFile.is_open()) {
+        outFile << fullName << " " << id << " " << nationality << " "
+                << age << " " << height << " " << weight << endl;
+        outFile.close();
+    } else {
+        cout << "Error opening the file for writing." << endl;
+    }
+}
+
+void Person::readDataFromFile() {
+    ifstream inFile("data/people.txt");
+    if (inFile.is_open()) {
+        inFile >> fullName >> id >> nationality >> age >> height >> weight;
+        inFile.close();
+    } else {
+        cout << "Error opening the file for reading." << endl;
+    }
+}
+
+void Person::updateDataInFile() {     ifstream inFile("data/people.txt");
+    ofstream tempFile("data/temp.txt");
+    string findId; 
+    while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
+        if (id == findId) {
+        }
+        tempFile << fullName << " " << id << " " << nationality << " "
+    << age << " " << height << " " << weight << endl;
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/people.txt"); 
+    rename("data/temp.txt", "data/people.txt"); 
+}
+
+void Person::removeDataFromFile() {      
+        ifstream inFile("data/people.txt");
+    ofstream tempFile("data/temp.txt");
+    string findId;
+    while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
+        if (id != findId) {
+            tempFile << fullName << " " << id << " " << nationality << " "
+    << age << " " << height << " " << weight << endl;
+        }
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/people.txt");
+    rename("data/temp.txt", "data/people.txt");
+}
