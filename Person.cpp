@@ -4,106 +4,116 @@
 #include "Person.h"
 using namespace std;
 
-Person::Person() {
-
+Person::Person()
+{
 }
-Person::Person(string fullName,string id,string nationality,int age,float height ,float weight){
-    this -> fullName = fullName;
-    this -> id = id;
-    this -> nationality = nationality;
-    this -> age = age;
-    this -> height = height;
-    this -> weight = weight;
-}
-
-Person::~Person() {
-
+Person::Person(string fullName, string id, string nationality, int age, float height, float weight)
+{
+    this->fullName = fullName;
+    this->id = id;
+    this->nationality = nationality;
+    this->age = age;
+    this->height = height;
+    this->weight = weight;
 }
 
-void Person::setAll(string fullName,string id,string nationality,int age,float height ,float weight){
-    this -> fullName = fullName;
-    this -> id = id;
-    this -> nationality = nationality;
-    this -> age = age;
-    this -> height = height;
-    this -> weight = weight;
+Person::~Person()
+{
 }
 
-void Person::displayInfo(){
-    cout<<"Full Name: "<<fullName<<endl;
-    cout<<"ID: "<<id<<endl;
-    cout<<"Nationality: "<<nationality<<endl;
-    cout<<"Age: "<<age<<endl;
-    cout<<"Height: "<<height<<endl;
-    cout<<"Weight: "<<weight<<endl;    
+void Person::setAll(string fullName, string id, string nationality, int age, float height, float weight)
+{
+    this->fullName = fullName;
+    this->id = id;
+    this->nationality = nationality;
+    this->age = age;
+    this->height = height;
+    this->weight = weight;
 }
 
-void Person::setFullName(string fullName){
-    this -> fullName = fullName;
+void Person::displayInfo() const
+{
+    cout << "Full Name: " << fullName << endl;
+    cout << "ID: " << id << endl;
+    cout << "Nationality: " << nationality << endl;
+    cout << "Age: " << age << endl;
+    cout << "Height: " << height << endl;
+    cout << "Weight: " << weight << endl;
 }
 
-string Person::getFullName(){
+void Person::setFullName(string fullName)
+{
+    this->fullName = fullName;
+}
+
+string Person::getFullName()
+{
     return fullName;
 }
 
-void Person::setId(string id){
-    this -> id = id;
-
+void Person::setId(string id)
+{
+    this->id = id;
 }
 
-string Person::getId(){
+string Person::getId()
+{
     return id;
-
 }
 
-void Person::setNationality(string nationality){
-    this -> nationality = nationality;
-
+void Person::setNationality(string nationality)
+{
+    this->nationality = nationality;
 }
 
-string Person::getNationality(){
+string Person::getNationality()
+{
     return nationality;
-
 }
 
-
-void Person::setAge(int age){
-    this -> age = age;
+void Person::setAge(int age)
+{
+    this->age = age;
 }
 
-int Person::getAge(){
+int Person::getAge()
+{
     return age;
 }
 
-void Person::addPerson(){
-cout<<"Enter full name: ";
-cin>>fullName;
+void Person::addPerson()
+{
+    cout << "Enter full name: ";
+    cin >> fullName;
 
-cout<<"Enter id: ";
-cin>>id;
+    cout << "Enter id: ";
+    cin >> id;
 
-cout<<"Enter Nationality: ";
-cin>>nationality;
+    cout << "Enter Nationality: ";
+    cin >> nationality;
 
-cout<<"Enter age: ";
-cin>>age;
+    cout << "Enter age: ";
+    cin >> age;
 
-cout<<"Enter height: ";
-cin>>height;
+    cout << "Enter height: ";
+    cin >> height;
 
-cout<<"Enter weight: ";
-cin>>weight;
+    cout << "Enter weight: ";
+    cin >> weight;
 }
 
-
-//FILE HANDLING:
-void Person::writeDataToFile() {
-    ofstream outFile("data/people.txt");
-    if (outFile.is_open()) {
+// FILE HANDLING:
+void Person::writeDataToFile()
+{
+    ofstream outFile("data/people.txt", ios::app); // Open file in append mode
+    if (outFile.is_open())
+    {
         outFile << fullName << " " << id << " " << nationality << " "
                 << age << " " << height << " " << weight << endl;
         outFile.close();
-    } else {
+    }
+    else
+    {
         cout << "Error opening the file for writing." << endl;
     }
 }
@@ -111,36 +121,53 @@ void Person::writeDataToFile() {
 void Person::readDataFromFile() {
     ifstream inFile("data/people.txt");
     if (inFile.is_open()) {
-        inFile >> fullName >> id >> nationality >> age >> height >> weight;
+        while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
+            Person person;
+            person.fullName = fullName;
+            person.id = id;
+            person.nationality = nationality;
+            person.age = age;
+            person.height = height;
+            person.weight = weight;
+            persons.push_back(person);
+        }
         inFile.close();
     } else {
         cout << "Error opening the file for reading." << endl;
     }
 }
 
-void Person::updateDataInFile() {     ifstream inFile("data/people.txt");
+
+void Person::updateDataInFile()
+{
+    ifstream inFile("data/people.txt");
     ofstream tempFile("data/temp.txt");
-    string findId; 
-    while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
-        if (id == findId) {
+    string findId;
+    while (inFile >> fullName >> id >> nationality >> age >> height >> weight)
+    {
+        if (id == findId)
+        {
         }
         tempFile << fullName << " " << id << " " << nationality << " "
-    << age << " " << height << " " << weight << endl;
+                 << age << " " << height << " " << weight << endl;
     }
     inFile.close();
     tempFile.close();
-    remove("data/people.txt"); 
-    rename("data/temp.txt", "data/people.txt"); 
+    remove("data/people.txt");
+    rename("data/temp.txt", "data/people.txt");
 }
 
-void Person::removeDataFromFile() {      
-        ifstream inFile("data/people.txt");
+void Person::removeDataFromFile()
+{
+    ifstream inFile("data/people.txt");
     ofstream tempFile("data/temp.txt");
     string findId;
-    while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
-        if (id != findId) {
+    while (inFile >> fullName >> id >> nationality >> age >> height >> weight)
+    {
+        if (id != findId)
+        {
             tempFile << fullName << " " << id << " " << nationality << " "
-    << age << " " << height << " " << weight << endl;
+                     << age << " " << height << " " << weight << endl;
         }
     }
     inFile.close();

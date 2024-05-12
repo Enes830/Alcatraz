@@ -3,6 +3,7 @@
 #define PERSON_H
 using namespace std;
 #include <string>
+#include <vector>
 
 class Person {
 public:
@@ -25,17 +26,21 @@ public:
     int getAge();
     //Declaring Functions:
     void addPerson();
-    void displayInfo();
+    void displayInfo() const;
     void setAll(string fullName,string id,string nationality,int age,float height ,float weight);
     void writeDataToFile();
     void readDataFromFile();
     void updateDataInFile();
     void removeDataFromFile();
+    static vector<Person> persons;
+    
 private:
     //Declaring Attributes:
     int age;
     float height, weight;
     string fullName,id,nationality;
+
+    
 };
 
 #endif
