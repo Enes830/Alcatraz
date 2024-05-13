@@ -1,8 +1,9 @@
 #ifndef STAFF_H
 #define STAFF_H
 
-#include <string>
 #include "Person.h"
+#include <string>
+#include <vector>
 using namespace std;
 
 class Staff : public Person{
@@ -28,6 +29,12 @@ class Staff : public Person{
         void incrementSalary(int monthlyBonus);
         void displayInfo();
         void addPerson();
+        void writeDataToFile();
+        void readDataFromFile();
+        void updateDataInFile();
+        void removeDataFromFile();
+        static vector<Staff> staffs;
+
     private:
         //Declaring Attributes:
         string job,address;

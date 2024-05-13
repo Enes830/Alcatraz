@@ -70,25 +70,78 @@ cin>>sentenceStart;
 cout<<"Enter sentenceLength: ";
 cin>>sentenceLength;
 }
-/*
+
 //FILE HANDLING:
-void writeDataToFile() {
-    // Implementation for writing data to the file
-    // ...
+void Inmate::writeDataToFile() {
+    Person::writeDataToFile();
+    ofstream outFile("data/inmate.txt", ios::app); // Open file in append mode
+    if (outFile.is_open())
+    {
+        outFile << cage << " " << felony << " " << sentenceStart << " "
+                << sentenceLength << endl;
+        outFile.close();
+    }
+    else
+    {
+        cout << "Error opening the file for writing." << endl;
+    }
 }
 
-void readDataFromFile() {
-    // Implementation for reading data from the file
-    // ...
+void Inmate::readDataFromFile() {
+    Person::readDataFromFile();
+    ifstream inFile("data/inmate.txt");
+    if (inFile.is_open()) {
+        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength) {
+            Inmate inmate;
+            inmate.cage = cage;
+            inmate.felony = felony;
+            inmate.sentenceStart = sentenceStart;
+            inmate.sentenceLength = sentenceLength;
+            inmates.push_back(inmate);
+        }
+        inFile.close();
+    } else {
+        cout << "Error opening the file for reading." << endl;
+    }
 }
 
-void updateDataInFile() {
-    // Implementation for updating data in the file
-    // ...
+void Inmate::updateDataInFile() {
+    Person::updateDataInFile();
+    ifstream inFile("data/inmate.txt");
+    ofstream tempFile("data/temp3.txt");
+    string findId;
+        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength) {
+    {
+        if (getId() == findId)
+        {
+        }
+        tempFile << cage << " " << felony << " " << sentenceStart << " "
+                << sentenceLength << endl;
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/inmate.txt");
+    rename("data/temp3.txt", "data/inmate.txt");
+    }
 }
 
-void removeDataFromFile() {
-    // Implementation for removing data from the file
-    // ...
+void Inmate::removeDataFromFile() {
+    Person::removeDataFromFile();
+        ifstream inFile("data/inmate.txt");
+    ofstream tempFile("data/temp3.txt");
+    string findId;
+        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength) {
+    {
+        if (getId() != findId)
+        {
+            tempFile << cage << " " << felony << " " << sentenceStart << " "
+                << sentenceLength << endl;
+        }
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/inmate.txt");
+    rename("data/temp3.txt", "data/inmate.txt");
+
+    }
 }
-*/

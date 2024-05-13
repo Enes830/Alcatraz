@@ -1,10 +1,10 @@
 // Inmate.h
 #ifndef INMATE_H
 #define INMATE_H
-
-#include <string>
-#include "Person.h"
 using namespace std;
+#include "Person.h"
+#include <string>
+#include <vector>
 
 class Inmate : public Person {
     public:
@@ -28,6 +28,11 @@ class Inmate : public Person {
         //Declaring Functions:
         void displayInfo();
         void addPerson();
+        void writeDataToFile();
+        void readDataFromFile();
+        void updateDataInFile();
+        void removeDataFromFile();
+        static vector<Inmate> inmates;
     private:
         //Declaring Attributes:
         string cage,sentenceStart,felony;

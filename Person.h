@@ -33,7 +33,6 @@ public:
     void updateDataInFile();
     void removeDataFromFile();
     static vector<Person> persons;
-    
 private:
     //Declaring Attributes:
     int age;

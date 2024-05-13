@@ -3,8 +3,13 @@
 #include "Staff.h"
 #include "Inmate.h"
 #include <vector>
+using namespace std;
 
 vector<Person> Person::persons;
+vector<Staff> Staff::staffs;
+vector<Inmate> Inmate::inmates;
+
+
 int main() {
     // Inmate obj;
     // obj.addPerson();

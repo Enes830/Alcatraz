@@ -88,25 +88,74 @@ void Staff::addPerson(){
 }
 
 
-/*
 //FILE HANDLING:
-void writeDataToFile() {
-    // Implementation for writing data to the file
-    // ...
+void Staff::writeDataToFile() {
+    Person::writeDataToFile();
+        ofstream outFile("data/staff.txt", ios::app); // Open file in append mode
+    if (outFile.is_open())
+    {
+        outFile << job << " " << salary << " " << address << " "
+                << yearJoined << endl;
+        outFile.close();
+    }
+    else
+    {
+        cout << "Error opening the file for writing." << endl;
+    }
 }
 
-void readDataFromFile() {
-    // Implementation for reading data from the file
-    // ...
+void Staff::readDataFromFile() {
+    Person::readDataFromFile();
+ifstream inFile("data/staff.txt");
+    if (inFile.is_open()) {
+        while (inFile >> job >> salary >> address >> yearJoined) {
+            Staff staff;
+            staff.job = job;
+            staff.salary = salary;
+            staff.address = address;
+            staff.yearJoined = yearJoined;
+            staffs.push_back(staff);
+        }
+        inFile.close();
+    } else {
+        cout << "Error opening the file for reading." << endl;
+    }
 }
 
-void updateDataInFile() {
-    // Implementation for updating data in the file
-    // ...
+void Staff::updateDataInFile() {
+    Person::updateDataInFile();
+    ifstream inFile("data/staff.txt");
+    ofstream tempFile("data/temp2.txt");
+    string findId;
+    while (inFile >> job >> salary >> address >> yearJoined)
+    {
+        if (getId() == findId)
+        {
+        }
+        tempFile << job << " " << salary << " " << address << " "
+                 << yearJoined << endl;
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/staff.txt");
+    rename("data/temp2.txt", "data/staff.txt");
 }
 
-void removeDataFromFile() {
-    // Implementation for removing data from the file
-    // ...
+void Staff::removeDataFromFile() {
+    Person::removeDataFromFile();
+    ifstream inFile("data/staff.txt");
+    ofstream tempFile("data/temp2.txt");
+    string findId;
+    while (inFile >> job >> salary >> address >> yearJoined)
+    {
+        if (getId() != findId)
+        {
+        }
+        tempFile << job << " " << salary << " " << address << " "
+                 << yearJoined << endl;
+    }
+    inFile.close();
+    tempFile.close();
+    remove("data/staff.txt");
+    rename("data/temp2.txt", "data/staff.txt");
 }
-*/
