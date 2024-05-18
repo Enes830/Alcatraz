@@ -81,14 +81,30 @@ int Person::getAge()
     return age;
 }
 
+void Person::setHeight(float height){
+    this->height=height;
+}
+
+float Person::getHeight(){
+    return height;
+}
+
+void Person::setWeight(float weight){
+    this->weight=weight;
+}
+
+float Person::getWeight(){
+    return weight;
+}
+
 void Person::addPerson()
 {
     cout << "Enter full name: ";
     cin >> fullName;
-
+/*
     cout << "Enter id: ";
     cin >> id;
-
+*/
     cout << "Enter Nationality: ";
     cin >> nationality;
 
@@ -104,7 +120,7 @@ void Person::addPerson()
 
 // FILE HANDLING:
 void Person::writeDataToFile()
-{
+{/*
     ofstream outFile("data/people.txt", ios::app); // Open file in append mode
     if (outFile.is_open())
     {
@@ -116,9 +132,11 @@ void Person::writeDataToFile()
     {
         cout << "Error opening the file for writing." << endl;
     }
+    */
 }
 
 void Person::readDataFromFile() {
+    /*
     ifstream inFile("data/people.txt");
     if (inFile.is_open()) {
         while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
@@ -135,11 +153,13 @@ void Person::readDataFromFile() {
     } else {
         cout << "Error opening the file for reading." << endl;
     }
+    */
 }
 
 
 void Person::updateDataInFile()
 {
+    /*
     ifstream inFile("data/people.txt");
     ofstream tempFile("data/temp.txt");
     string findId;
@@ -155,10 +175,12 @@ void Person::updateDataInFile()
     tempFile.close();
     remove("data/people.txt");
     rename("data/temp.txt", "data/people.txt");
+    */
 }
 
 void Person::removeDataFromFile()
 {
+    /*
     ifstream inFile("data/people.txt");
     ofstream tempFile("data/temp.txt");
     string findId;
@@ -174,4 +196,5 @@ void Person::removeDataFromFile()
     tempFile.close();
     remove("data/people.txt");
     rename("data/temp.txt", "data/people.txt");
+    */
 }

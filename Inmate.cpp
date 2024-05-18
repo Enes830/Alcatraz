@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
+#include <vector>
 #include "Inmate.h"
 #include "Person.h"
 
@@ -72,12 +74,33 @@ cin>>sentenceLength;
 }
 
 //FILE HANDLING:
-void Inmate::writeDataToFile() {
+void Inmate::writeDataToFile()
+{
     Person::writeDataToFile();
-    ofstream outFile("data/inmate.txt", ios::app); // Open file in append mode
+    ifstream inFile("data/people.csv");
+    bool isEmpty = inFile.peek() == EOF;  // Check if the file is empty
+
+    // Calculate the next ID based on the number of lines (excluding the header)
+    int nextId = 1;  // Start IDs from 1
+    string line;
+    if (!isEmpty) {
+        getline(inFile, line); // Skip the header line
+        while (getline(inFile, line)) {
+            nextId++;  // Count each line to get the next ID
+        }
+    }
+    inFile.close();  // Close the input file
+
+    ofstream outFile("data/inmate.csv", ios::app); // Open file in append mode
     if (outFile.is_open())
     {
-        outFile << cage << " " << felony << " " << sentenceStart << " "
+        if (isEmpty) {
+            // Write headers if the file is empty
+            outFile << "ID,Full Name,Nationality,Age,Height,Weight,Cage,Felony,Sentence Start,Sentence Length" << endl;
+        }
+
+        // Write the data with the next ID
+        outFile << nextId << "," << getFullName() << "," << getNationality() << "," << getAge() << "," << getHeight() <<","<< getWeight() <<","<< cage << "," << felony << "," << sentenceStart << ","
                 << sentenceLength << endl;
         outFile.close();
     }
@@ -87,23 +110,104 @@ void Inmate::writeDataToFile() {
     }
 }
 
-void Inmate::readDataFromFile() {
-    Person::readDataFromFile();
-    ifstream inFile("data/inmate.txt");
-    if (inFile.is_open()) {
-        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength) {
-            Inmate inmate;
-            inmate.cage = cage;
-            inmate.felony = felony;
-            inmate.sentenceStart = sentenceStart;
-            inmate.sentenceLength = sentenceLength;
-            inmates.push_back(inmate);
+void readDataFromFile() {
+        ifstream inFile("data/inmate.csv");
+        if (inFile.is_open()) {
+            string line;
+            getline(inFile, line);  // Optionally skip the header if your CSV includes headers.
+
+            while (getline(inFile, line)) {
+                stringstream ss(line);
+                string cell;
+                
+                getline(ss, cell, ',');
+                int id = 0;
+                if (!cell.empty()) {
+                    try {
+                        id = stoi(cell);
+                    } catch (const invalid_argument& e) {
+                        cerr << "Invalid ID: " << cell << endl;
+                        continue;
+                    }
+                }
+
+                getline(ss, cell, ',');
+                string fullName = cell;
+
+                getline(ss, cell, ',');
+                string nationality = cell;
+
+                getline(ss, cell, ',');
+                int age = 0;
+                if (!cell.empty()) {
+                    try {
+                        age = stoi(cell);
+                    } catch (const invalid_argument& e) {
+                        cerr << "Invalid Age: " << cell << endl;
+                        continue;
+                    }
+                }
+
+                getline(ss, cell, ',');
+                float height = 0.0f;
+                if (!cell.empty()) {
+                    try {
+                        height = stof(cell);
+                    } catch (const invalid_argument& e) {
+                        cerr << "Invalid Height: " << cell << endl;
+                        continue;
+                    }
+                }
+
+                getline(ss, cell, ',');
+                float weight = 0.0f;
+                if (!cell.empty()) {
+                    try {
+                        weight = stof(cell);
+                    } catch (const invalid_argument& e) {
+                        cerr << "Invalid Weight: " << cell << endl;
+                        continue;
+                    }
+                }
+
+                getline(ss, cell, ',');
+                string cage = cell;
+
+                getline(ss, cell, ',');
+                string felony = cell;
+
+                getline(ss, cell, ',');
+                string sentenceStart = cell;
+
+                getline(ss, cell, ',');
+                long long sentenceLength = 0;
+                if (!cell.empty()) {
+                    try {
+                        sentenceLength = stoll(cell);
+                    } catch (const invalid_argument& e) {
+                        cerr << "Invalid Sentence Length: " << cell << endl;
+                        continue;
+                    }
+                }
+
+                Inmate inmate;
+                inmate.setFullName(fullName);
+                inmate.setNationality(nationality);
+                inmate.setAge(age);
+                inmate.setHeight(height);
+                inmate.setWeight(weight);
+                inmate.setCage(cage);
+                inmate.setFelony(felony);
+                inmate.setSentenceStart(sentenceStart);
+                inmate.setSentenceLength(sentenceLength);
+
+              //  inmates.push_back(inmate);  // Assuming a vector<Inmate> inmates is part of the class.
+            }
+            inFile.close();
+        } else {
+            cout << "Error opening the file for reading." << endl;
         }
-        inFile.close();
-    } else {
-        cout << "Error opening the file for reading." << endl;
     }
-}
 
 void Inmate::updateDataInFile() {
     Person::updateDataInFile();

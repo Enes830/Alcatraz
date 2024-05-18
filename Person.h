@@ -24,6 +24,8 @@ public:
     string getId();
     string getNationality();
     int getAge();
+    float getHeight();
+    float getWeight();
     //Declaring Functions:
     void addPerson();
     void displayInfo() const;
