@@ -3,6 +3,7 @@
 #include "Staff.h"
 #include "Inmate.h"
 #include <vector>
+#include <conio.h>
 using namespace std;
 
 vector<Person> Person::persons;
@@ -15,44 +16,135 @@ int main() {
     // obj.addPerson();
     // obj.displayInfo();
     int choice;
+    int choice1;
+    int choice2;
     do {
-        cout << "Prison Management System\n";
-        cout << "1. Add Inmate\n";
-        cout << "2. Display Inmate Information\n";
-        cout << "3. Exit\n";
+        system("cls");
+        system("Color 2");
+
+        cout << "Prison Management System\n\n";
+        cout << "Main Menu"<<endl;
+        cout << "==================================="<<endl;
+        cout << "[1] Inmate management"<<endl;
+        cout << "[2] Staff management"<<endl;
+        cout << "[0] Exit\n";
+        cout << "==================================="<<endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1: {   
-                Person newPerson;
-                newPerson.addPerson();
-                newPerson.writeDataToFile();
-                cout << "Inmate added successfully!\n";
+                do{
+                system("cls");
+                cout << "==================================="<<endl;
+                cout<<"[1] Add Inmate"<<endl;
+                cout<<"[2] List of Inmates"<<endl;
+                cout<<"[3] Edit Inmate"<<endl;
+                cout<<"[4] Delete Inmate"<<endl;
+                cout<<"[0] Go back to Main Menu"<<endl;
+                cout << "==================================="<<endl;
+                cout<< "Enter your choice: ";
+                cin>> choice1;
 
-                break;
-            }
-            case 2: {
-            Person newPerson;
-            newPerson.readDataFromFile(); // Read data from file into newPerson1
+                switch(choice1){
+                    case 1:{
+                        system("cls");
+                        Inmate newInmate;
+                        newInmate.addPerson();
+                        newInmate.writeDataToFile();
+                        cout<<"Inmate added successfully"<<endl;
+                        break;
+                    }
+                    case 2:{
+                        system("cls");
+                        Inmate newInmate;
+                        newInmate.readDataFromFile();
+                        cout << "List of Inmates:\n";
+                        for(const auto& inmate : newInmate.inmates){
+                            newInmate.displayInfo();
+                            cout<<endl;
+                        }
+                        break;
+                    }
+                    case 3:{
+                        system("cls");
+                        break;
 
-            cout << "List of Persons:\n";
-            
+                    }
+                    case 4:{
+                        system("cls");
+                        break;
+                    }
+                    case 0:{
 
-            for (const auto& person : newPerson.persons) {
-                person.displayInfo(); // Display information for each person in the vector
-                cout << endl;
+                        break;
+                    }
+                    
+
+                }
+                } while(choice1 !=0);
+    break;
+    } 
+            case 2:{
+                do{
+                system("cls");
+                cout << "==================================="<<endl;
+                cout<<"[1] Add Employee"<<endl;
+                cout<<"[2] List of Employees"<<endl;
+                cout<<"[3] Edit Employee"<<endl;
+                cout<<"[4] Delete Employee"<<endl;
+                cout<<"[0] Go back to Main Menu"<<endl;
+                cout << "==================================="<<endl;
+                cout<< "Enter your choice: ";
+                cin>> choice2; 
+
+                switch(choice2){
+                    case 1:{
+                        system("cls");
+                        Staff newEmployee;
+                        newEmployee.addPerson();
+                        newEmployee.writeDataToFile();
+                        cout<<"Employee added successfully"<<endl;
+                        break;
+                    }
+                    case 2:{
+                        system("cls");
+                        Staff newEmployee;
+                        newEmployee.readDataFromFile();
+                        cout << "List of Inmates:\n";
+                        for(const auto& staff : newEmployee.staffs){
+                            newEmployee.displayInfo();
+                            cout<<endl;
+                        }
+                        break;
+                    }
+                    case 3:{
+                        system("cls");
+                        break;
+
+                    }
+                    case 4:{
+                        system("cls");
+                        break;
+                    }
+                    case 0:{
+                        system("cls");
+                        break;
+                    }
+                    
+
+                }
+                     } while(choice2 !=0);
+                   }
+                case 0:{
+                    cout << "Exiting...\n";
+                    break;
+                }
+
             }
-            break;
-            }
-            case 3:
-                cout << "Exiting...\n";
-                break;
-            default:
-                cout << "Invalid choice. Please try again.\n";
-                break;
-        }
-    } while (choice != 3);
+        }while(choice !=0);
 
     return 0;
-}
+
+    }
+
