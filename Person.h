@@ -35,7 +35,7 @@ public:
     void updateDataInFile();
     void removeDataFromFile();
     static vector<Person> persons;
-private:
+protected:
     //Declaring Attributes:
     int age;
     float height, weight;

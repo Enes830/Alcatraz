@@ -89,12 +89,33 @@ void Staff::addPerson(){
 
 
 //FILE HANDLING:
-void Staff::writeDataToFile() {
+void Staff::writeDataToFile()
+{
     Person::writeDataToFile();
-        ofstream outFile("data/staff.txt", ios::app); // Open file in append mode
+    ifstream inFile("data/staff.csv");
+    bool isEmpty = inFile.peek() == EOF;  // Check if the file is empty
+
+    // Calculate the next ID based on the number of lines (excluding the header)
+    int nextId = 1;  // Start IDs from 1
+    string line;
+    if (!isEmpty) {
+        getline(inFile, line); // Skip the header line
+        while (getline(inFile, line)) {
+            nextId++;  // Count each line to get the next ID
+        }
+    }
+    inFile.close();  // Close the input file
+
+    ofstream outFile("data/staff.csv", ios::app); // Open file in append mode
     if (outFile.is_open())
     {
-        outFile << job << " " << salary << " " << address << " "
+        if (isEmpty) {
+            // Write headers if the file is empty
+            outFile << "ID,Full Name,Nationality,Age,Height,Weight,Job,Address,Salary,Year Joined" << endl;
+        }
+
+        // Write the data with the next ID
+        outFile << nextId << "," << getFullName() << "," << getNationality() << "," << getAge() << "," << getHeight() <<","<< getWeight() <<","<< job << "," << address << "," << salary << ","
                 << yearJoined << endl;
         outFile.close();
     }

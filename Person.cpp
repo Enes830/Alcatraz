@@ -137,9 +137,61 @@ void Person::writeDataToFile()
 
 void Person::readDataFromFile() {
     /*
-    ifstream inFile("data/people.txt");
+    ifstream inFile("data/people.csv"); // Assuming your CSV file is named "people.csv"
     if (inFile.is_open()) {
-        while (inFile >> fullName >> id >> nationality >> age >> height >> weight) {
+        string line;
+        getline(inFile, line); // Optionally skip the header if your CSV includes headers.
+
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string cell;
+
+            // Assuming the order of data in the CSV is: fullName, id, nationality, age, height, weight
+            string fullName;
+            int id;
+            string nationality;
+            int age;
+            float height;
+            float weight;
+
+            getline(ss, cell, ',');
+            fullName = cell;
+
+            getline(ss, cell, ',');
+            try {
+                id = stoi(cell);
+            } catch (const invalid_argument& e) {
+                cerr << "Invalid ID: " << cell << endl;
+                continue;
+            }
+
+            getline(ss, cell, ',');
+            nationality = cell;
+
+            getline(ss, cell, ',');
+            try {
+                age = stoi(cell);
+            } catch (const invalid_argument& e) {
+                cerr << "Invalid Age: " << cell << endl;
+                continue;
+            }
+
+            getline(ss, cell, ',');
+            try {
+                height = stof(cell);
+            } catch (const invalid_argument& e) {
+                cerr << "Invalid Height: " << cell << endl;
+                continue;
+            }
+
+            getline(ss, cell, ',');
+            try {
+                weight = stof(cell);
+            } catch (const invalid_argument& e) {
+                cerr << "Invalid Weight: " << cell << endl;
+                continue;
+            }
+
             Person person;
             person.fullName = fullName;
             person.id = id;
@@ -152,8 +204,7 @@ void Person::readDataFromFile() {
         inFile.close();
     } else {
         cout << "Error opening the file for reading." << endl;
-    }
-    */
+    }*/            
 }
 
 

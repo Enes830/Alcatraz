@@ -29,7 +29,7 @@ class Inmate : public Person {
         void displayInfo();
         void addPerson();
         void writeDataToFile();
-        void readDataFromFile();
+       // void readDataFromFile();
         void updateDataInFile();
         void removeDataFromFile();
         static vector<Inmate> inmates;
