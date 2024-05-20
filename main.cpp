@@ -19,8 +19,9 @@ int main() {
     int choice1;
     int choice2;
     do {
-        system("cls");
+        // system("cls");
         system("Color 2");
+        string test;
 
         cout << "Prison Management System\n\n";
         cout << "Main Menu"<<endl;
@@ -53,17 +54,18 @@ int main() {
                         newInmate.addPerson();
                         newInmate.writeDataToFile();
                         cout<<"Inmate added successfully"<<endl;
+                        cout<<"\n\nPress any button to exit:";
+                        cin>>test;
                         break;
                     }
                     case 2:{
+                        cout<<"2";
                         system("cls");
                         Inmate newInmate;
-                        newInmate.readDataFromFile();
                         cout << "List of Inmates:\n";
-                        for(const auto& inmate : newInmate.inmates){
-                            newInmate.displayInfo();
-                            cout<<endl;
-                        }
+                        newInmate.readDataFromFile();
+                        cout<<"\n\nPress any button to exit:";
+                        cin>>test;
                         break;
                     }
                     case 3:{
