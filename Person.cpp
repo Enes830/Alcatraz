@@ -131,7 +131,9 @@ int Person::inputInteger(const string& prompt) {
 void Person::writeDataToFile()
 {
 }
-
+void Person::searchDataInFile()
+{    
+}
 // void Person::readDataFromFile() {
 // }
 

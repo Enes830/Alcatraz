@@ -35,6 +35,7 @@ public:
     void readDataFromFile();
     void updateDataInFile();
     void removeDataFromFile();
+    void searchDataInFile();
     static vector<Person> persons;
 protected:
     //Declaring Attributes:

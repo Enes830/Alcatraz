@@ -70,8 +70,11 @@ int main() {
                     }
                     case 3:{
                         system("cls");
+                        Inmate newInmate;
+                        newInmate.searchDataInFile();
+                        cout << "\n\nPress any button to exit:";
+                        cin >> test;
                         break;
-
                     }
                     case 4:{
                         system("cls");
