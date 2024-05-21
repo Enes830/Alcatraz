@@ -32,6 +32,7 @@ class Staff : public Person{
         void writeDataToFile();
         void readDataFromFile();
         void removeDataFromFile();
+        void searchDataInFile();
         static vector<Staff> staffs;
 
     private:

@@ -32,6 +32,7 @@ class Inmate : public Person {
         void writeDataToFile();
         void readDataFromFile();
         void removeDataFromFile();
+        void searchDataInFile();
         static vector<Inmate> inmates;
     private:
         //Declaring Attributes:

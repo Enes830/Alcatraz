@@ -96,7 +96,8 @@ float Person::getWeight(){
 void Person::addPerson()
 {
     cout << "Enter full name: ";
-    cin >> fullName;
+    cin.ignore(); //clear the line before calling getline
+    getline(cin,fullName);  //reads the entire line
 
     cout << "Enter Nationality: ";
     cin >> nationality;
@@ -132,7 +133,9 @@ std::string Person::trim(const std::string& str) {
 void Person::writeDataToFile()
 {
 }
-
+void Person::searchDataInFile()
+{    
+}
 // void Person::readDataFromFile() {
 // }
 

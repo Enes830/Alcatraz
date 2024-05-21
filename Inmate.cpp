@@ -202,7 +202,69 @@ void Inmate::readDataFromFile() {
     }
 }
 
-//Function to display IDs and handle the deletion process:
+void Inmate::searchDataInFile() {
+    ifstream inFile("data/inmate.csv"); // Assuming your CSV file is named "inmate.csv"
+    if (inFile.is_open()) {
+        string line;
+        getline(inFile, line); // Skip the header if your CSV includes headers.
+
+        cout << "Enter the ID to search: ";
+        string targetId;
+        cin >> targetId;
+
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string cell;
+            Inmate inmate;
+
+            getline(ss, cell, ','); // ID
+            if (cell == targetId) {
+                // Found the matching ID, populate the Inmate object
+                inmate.setId(cell);
+
+                getline(ss, cell, ','); // Full Name
+                inmate.setFullName(cell);
+
+                getline(ss, cell, ','); // Nationality
+                inmate.setNationality(cell);
+
+                getline(ss, cell, ','); // Age
+                try {
+                    inmate.setAge(stoi(cell));
+                } catch (const invalid_argument& e) {
+                    cerr << "Invalid age format: " << cell << endl;
+                    continue;
+                }
+                getline(ss,cell,',');
+                inmate.setHeight(stof(cell));
+                getline(ss,cell,',');
+                inmate.setWeight(stof(cell));
+                getline(ss,cell,',');
+                inmate.setCage(cell);
+                getline(ss,cell,',');
+                inmate.setFelony(cell);
+                getline(ss,cell,',');
+                inmate.setSentenceStart(cell);
+                getline(ss,cell,',');
+                inmate.setSentenceLength(stoi(cell));
+                
+
+                // ... (similarly populate other fields)
+
+                // Display the information for the matching ID
+                inmate.displayInfo();
+                cout << "-----------------------" << endl;
+                break; // Exit the loop after finding the match
+            }
+        }
+
+        inFile.close();
+    } else {
+        cout << "Error opening the file for reading." << endl;
+    }
+}
+
+  
 void Inmate::removeDataFromFile() {
     std::vector<std::string> records;
     std::string line, targetId;
