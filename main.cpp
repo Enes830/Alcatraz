@@ -112,12 +112,11 @@ int main() {
                     case 2:{
                         system("cls");
                         Staff newEmployee;
-                        newEmployee.readDataFromFile();
                         cout << "List of Inmates:\n";
-                        for(const auto& staff : newEmployee.staffs){
-                            newEmployee.displayInfo();
-                            cout<<endl;
-                        }
+                        newEmployee.readDataFromFile();
+                        
+                        cout<<"\n\nPress any button to exit:";
+                        cin>>test;
                         break;
                     }
                     case 3:{

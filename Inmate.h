@@ -12,19 +12,19 @@ class Inmate : public Person {
         Inmate();
         Inmate(string fullName,string id,string nationality,int age,float height , 
         float weight,string felony,string cage,string sentenceStart,
-        int sentenceLength);
+        long long sentenceLength);
         //deconstructor:
         virtual ~Inmate();
         //Declaring Setters:
         void setFelony(string felony);
         void setCage(string cage);
         void setSentenceStart(string sentenceStart);
-        void setSentenceLength(int sentenceLength);
+        void setSentenceLength(long long sentenceLength);
          //Declaring Getters:
         string getFelony();
         string getCage();
         string getSentenceStart();
-        int getSentenceLength();
+        long long getSentenceLength();
         //Declaring Functions:
         void displayInfo();
         void addPerson();
@@ -36,7 +36,7 @@ class Inmate : public Person {
     private:
         //Declaring Attributes:
         string cage,sentenceStart,felony;
-        int sentenceLength;
+        long long sentenceLength;
 };
 
 #endif

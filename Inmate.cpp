@@ -9,7 +9,7 @@
 using namespace std;
 
 Inmate::Inmate() {}
-Inmate::Inmate(string fullName, string id, string nationality, int age, float height, float weight, string felony, string cage, string sentenceStart, int sentenceLength)
+Inmate::Inmate(string fullName, string id, string nationality, int age, float height, float weight, string felony, string cage, string sentenceStart, long long  sentenceLength)
 {
     Person::setAll(fullName, id, nationality, age, height, weight);
     this->felony = felony;
@@ -47,11 +47,11 @@ string Inmate::getSentenceStart()
     return sentenceStart;
 };
 
-void Inmate::setSentenceLength(int sentenceLength)
+void Inmate::setSentenceLength(long long sentenceLength)
 {
     this->sentenceLength = sentenceLength;
 }
-int Inmate::getSentenceLength()
+long long Inmate::getSentenceLength()
 {
     return sentenceLength;
 };
@@ -79,14 +79,14 @@ void Inmate::addPerson()
     cout << "Enter sentenceStart: ";
     cin >> sentenceStart;
 
-    cout << "Enter sentenceLength: ";
-    cin >> sentenceLength;
+    
+    sentenceLength = inputInteger("Enter sentence length: ");
 }
 
 // FILE HANDLING:
 void Inmate::writeDataToFile()
 {
-    Person::writeDataToFile();
+   // Person::writeDataToFile();
     ifstream inFile("data/inmate.csv");
     bool isEmpty = inFile.peek() == EOF; // Check if the file is empty
 

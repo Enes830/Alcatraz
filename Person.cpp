@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <limits>
 #include <string>
 #include "Person.h"
 using namespace std;
@@ -101,151 +102,43 @@ void Person::addPerson()
 {
     cout << "Enter full name: ";
     cin >> fullName;
-/*
-    cout << "Enter id: ";
-    cin >> id;
-*/
+
     cout << "Enter Nationality: ";
     cin >> nationality;
 
-    cout << "Enter age: ";
-    cin >> age;
-
-    cout << "Enter height: ";
-    cin >> height;
-
-    cout << "Enter weight: ";
-    cin >> weight;
+    age = inputInteger("Enter age: ");
+    height = inputInteger("Enter height: ");
+    weight = inputInteger("Enter weight: ");
 }
+
+int Person::inputInteger(const string& prompt) {
+        int value;
+        cout << prompt;
+        while (!(cin >> value)) {
+            cin.clear(); // Clear error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore wrong input
+            cout << "Please enter an integer value: "; // Prompt the user again
+        }
+        return value;
+    }
+
+
+
+
 
 // FILE HANDLING:
 void Person::writeDataToFile()
-{/*
-    ofstream outFile("data/people.txt", ios::app); // Open file in append mode
-    if (outFile.is_open())
-    {
-        outFile << fullName << " " << id << " " << nationality << " "
-                << age << " " << height << " " << weight << endl;
-        outFile.close();
-    }
-    else
-    {
-        cout << "Error opening the file for writing." << endl;
-    }
-    */
+{
 }
 
-void Person::readDataFromFile() {
-    /*
-    ifstream inFile("data/people.csv"); // Assuming your CSV file is named "people.csv"
-    if (inFile.is_open()) {
-        string line;
-        getline(inFile, line); // Optionally skip the header if your CSV includes headers.
-
-        while (getline(inFile, line)) {
-            stringstream ss(line);
-            string cell;
-
-            // Assuming the order of data in the CSV is: fullName, id, nationality, age, height, weight
-            string fullName;
-            int id;
-            string nationality;
-            int age;
-            float height;
-            float weight;
-
-            getline(ss, cell, ',');
-            fullName = cell;
-
-            getline(ss, cell, ',');
-            try {
-                id = stoi(cell);
-            } catch (const invalid_argument& e) {
-                cerr << "Invalid ID: " << cell << endl;
-                continue;
-            }
-
-            getline(ss, cell, ',');
-            nationality = cell;
-
-            getline(ss, cell, ',');
-            try {
-                age = stoi(cell);
-            } catch (const invalid_argument& e) {
-                cerr << "Invalid Age: " << cell << endl;
-                continue;
-            }
-
-            getline(ss, cell, ',');
-            try {
-                height = stof(cell);
-            } catch (const invalid_argument& e) {
-                cerr << "Invalid Height: " << cell << endl;
-                continue;
-            }
-
-            getline(ss, cell, ',');
-            try {
-                weight = stof(cell);
-            } catch (const invalid_argument& e) {
-                cerr << "Invalid Weight: " << cell << endl;
-                continue;
-            }
-
-            Person person;
-            person.fullName = fullName;
-            person.id = id;
-            person.nationality = nationality;
-            person.age = age;
-            person.height = height;
-            person.weight = weight;
-            persons.push_back(person);
-        }
-        inFile.close();
-    } else {
-        cout << "Error opening the file for reading." << endl;
-    }*/            
-}
+// void Person::readDataFromFile() {
+// }
 
 
 void Person::updateDataInFile()
 {
-    /*
-    ifstream inFile("data/people.txt");
-    ofstream tempFile("data/temp.txt");
-    string findId;
-    while (inFile >> fullName >> id >> nationality >> age >> height >> weight)
-    {
-        if (id == findId)
-        {
-        }
-        tempFile << fullName << " " << id << " " << nationality << " "
-                 << age << " " << height << " " << weight << endl;
-    }
-    inFile.close();
-    tempFile.close();
-    remove("data/people.txt");
-    rename("data/temp.txt", "data/people.txt");
-    */
 }
 
 void Person::removeDataFromFile()
 {
-    /*
-    ifstream inFile("data/people.txt");
-    ofstream tempFile("data/temp.txt");
-    string findId;
-    while (inFile >> fullName >> id >> nationality >> age >> height >> weight)
-    {
-        if (id != findId)
-        {
-            tempFile << fullName << " " << id << " " << nationality << " "
-                     << age << " " << height << " " << weight << endl;
-        }
-    }
-    inFile.close();
-    tempFile.close();
-    remove("data/people.txt");
-    rename("data/temp.txt", "data/people.txt");
-    */
 }

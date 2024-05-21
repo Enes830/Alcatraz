@@ -26,6 +26,7 @@ public:
     int getAge();
     float getHeight();
     float getWeight();
+    
     //Declaring Functions:
     void addPerson();
     void displayInfo() const;
@@ -37,6 +38,7 @@ public:
     static vector<Person> persons;
 protected:
     //Declaring Attributes:
+    int inputInteger(const string& prompt);
     int age;
     float height, weight;
     string fullName,id,nationality;

@@ -3,6 +3,8 @@
 #include <string>
 #include "Staff.h"
 #include "Person.h"
+#include <sstream>
+
 
 using namespace std;
 
@@ -77,14 +79,12 @@ void Staff::addPerson(){
     cout<<"Enter job: ";
     cin>>job;
 
-    cout<<"Enter salary: ";
-    cin>>salary;
+    salary = inputInteger("Enter salary: ");
 
     cout<<"Enter address: ";
     cin>>address;
     
-    cout<<"Enter yearJoined: ";
-    cin>>yearJoined;
+    yearJoined = inputInteger("Enter year joined: ");
 }
 
 
@@ -126,16 +126,56 @@ void Staff::writeDataToFile()
 }
 
 void Staff::readDataFromFile() {
-    Person::readDataFromFile();
-ifstream inFile("data/staff.txt");
+    ifstream inFile("data/staff.csv"); // Assuming your CSV file is named "staff.csv"
     if (inFile.is_open()) {
-        while (inFile >> job >> salary >> address >> yearJoined) {
+        string line;
+        getline(inFile, line); // Skip the header if your CSV includes headers.
+        vector<Staff> staffs;
+
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string cell;
             Staff staff;
-            staff.job = job;
-            staff.salary = salary;
-            staff.address = address;
-            staff.yearJoined = yearJoined;
+
+            getline(ss, cell, ','); // ID
+            staff.setId(cell);
+
+            getline(ss, cell, ','); // Full Name
+            staff.setFullName(cell);
+
+            getline(ss, cell, ','); // Nationality
+            staff.setNationality(cell);
+
+            getline(ss, cell, ','); // Age
+            staff.setAge(stoi(cell));
+
+            getline(ss, cell, ','); // Height
+            staff.setHeight(stof(cell));
+
+            getline(ss, cell, ','); // Weight
+            staff.setWeight(stof(cell));
+
+            getline(ss, cell, ','); // Cage
+            staff.setJob(cell);
+
+            getline(ss, cell, ','); // Felony
+            staff.setAddress(cell);
+
+             // Assuming date is handled as string or appropriately
+
+            getline(ss, cell, ','); // Sentence Length
+            staff.setSalary(stoi(cell));
+
+            getline(ss, cell, ','); // Sentence Start
+            staff.setYearJoined(stoi(cell));
+
+            // Add the populated staff object to your data structure (e.g., vector or other container)
             staffs.push_back(staff);
+        }
+
+        for (auto& staff : staffs) {
+            staff.displayInfo();
+            cout<<"-----------------------";
         }
         inFile.close();
     } else {
