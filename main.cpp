@@ -19,7 +19,7 @@ int main() {
     int choice1;
     int choice2;
     do {
-        // system("cls");
+        system("cls");
         system("Color 2");
         string test;
 
@@ -40,7 +40,7 @@ int main() {
                 cout << "==================================="<<endl;
                 cout<<"[1] Add Inmate"<<endl;
                 cout<<"[2] List of Inmates"<<endl;
-                cout<<"[3] Edit Inmate"<<endl;
+                cout<<"[3] Search for Inmate"<<endl;
                 cout<<"[4] Delete Inmate"<<endl;
                 cout<<"[0] Go back to Main Menu"<<endl;
                 cout << "==================================="<<endl;
@@ -88,7 +88,7 @@ int main() {
 
                 }
                 } while(choice1 !=0);
-    break;
+                break;
     } 
             case 2:{
                 do{
@@ -96,7 +96,7 @@ int main() {
                 cout << "==================================="<<endl;
                 cout<<"[1] Add Employee"<<endl;
                 cout<<"[2] List of Employees"<<endl;
-                cout<<"[3] Edit Employee"<<endl;
+                cout<<"[3] Search for Employee"<<endl;
                 cout<<"[4] Delete Employee"<<endl;
                 cout<<"[0] Go back to Main Menu"<<endl;
                 cout << "==================================="<<endl;
@@ -109,7 +109,9 @@ int main() {
                         Staff newEmployee;
                         newEmployee.addPerson();
                         newEmployee.writeDataToFile();
-                        cout<<"Employee added successfully"<<endl;
+                        cout<<"\nEmployee added successfully"<<endl;
+                        cout<<"\n\nPress any button to exit:";
+                        cin>>test;
                         break;
                     }
                     case 2:{
@@ -124,8 +126,11 @@ int main() {
                     }
                     case 3:{
                         system("cls");
+                        Staff newEmployee;
+                        newEmployee.searchDataInFile();
+                        cout << "\n\nPress any button to exit:";
+                        cin >> test;
                         break;
-
                     }
                     case 4:{
                         system("cls");
@@ -139,6 +144,7 @@ int main() {
 
                 }
                      } while(choice2 !=0);
+                     break;
                    }
                 case 0:{
                     cout << "Exiting...\n";

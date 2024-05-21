@@ -115,7 +115,7 @@ void Staff::writeDataToFile()
         }
 
         // Write the data with the next ID
-        outFile << nextId << "," << getFullName() << "," << getNationality() << "," << getAge() << "," << getHeight() <<","<< getWeight() <<","<< job << "," << address << "," << salary << ","
+        outFile << nextId << "," << getFullName() << "," << getNationality() << "," << getAge() << "," << getHeight() <<","<< getWeight() <<","<< job << "," << address << "," << salary <<"$"<< ","
                 << yearJoined << endl;
         outFile.close();
     }
@@ -177,6 +177,65 @@ void Staff::readDataFromFile() {
             staff.displayInfo();
             cout<<"-----------------------";
         }
+        inFile.close();
+    } else {
+        cout << "Error opening the file for reading." << endl;
+    }
+}
+
+void Staff::searchDataInFile() {
+    ifstream inFile("data/staff.csv"); // Assuming your CSV file is named "staff.csv"
+    if (inFile.is_open()) {
+        string line;
+        getline(inFile, line); // Skip the header if your CSV includes headers.
+
+        cout << "Enter the staff ID to search: ";
+        string targetId;
+        cin >> targetId;
+
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string cell;
+            Staff staff;
+
+            getline(ss, cell, ','); // Staff ID
+            if (cell == targetId) {
+                staff.setId(cell);
+
+            getline(ss, cell, ','); // Full Name
+            staff.setFullName(cell);
+
+            getline(ss, cell, ','); // Nationality
+            staff.setNationality(cell);
+
+            getline(ss, cell, ','); // Age
+            staff.setAge(stoi(cell));
+
+            getline(ss, cell, ','); // Height
+            staff.setHeight(stof(cell));
+
+            getline(ss, cell, ','); // Weight
+            staff.setWeight(stof(cell));
+
+            getline(ss, cell, ','); // Cage
+            staff.setJob(cell);
+
+            getline(ss, cell, ','); // Felony
+            staff.setAddress(cell);
+
+            getline(ss, cell, ','); // Sentence Length
+            staff.setSalary(stoi(cell));
+
+            getline(ss, cell, ','); // Sentence Start
+            staff.setYearJoined(stoi(cell));
+
+                // Display the information for the matching staff ID
+                staff.displayInfo();
+                cout << "-----------------------" << endl;
+                break; // Exit the loop after finding the match
+            }
+        }
+
         inFile.close();
     } else {
         cout << "Error opening the file for reading." << endl;
