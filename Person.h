@@ -4,11 +4,14 @@
 using namespace std;
 #include <string>
 #include <vector>
+#include <algorithm>
+
 
 class Person {
 public:
     //Constructor:
     Person();
+    Person(const std::string& id) : id(id) {}
     Person(string fullName,string id,string nationality,int age,float height ,float weight);
     //deconstructor:
     virtual ~Person();
@@ -21,7 +24,8 @@ public:
     void setWeight(float weight);
     //Declaring Getters:
     string getFullName();
-    string getId();
+    //string getId();
+    virtual std::string getId() const { return id; }
     string getNationality();
     int getAge();
     float getHeight();
@@ -33,12 +37,12 @@ public:
     void setAll(string fullName,string id,string nationality,int age,float height ,float weight);
     void writeDataToFile();
     void readDataFromFile();
-    void updateDataInFile();
     void removeDataFromFile();
     static vector<Person> persons;
 protected:
     //Declaring Attributes:
     int inputInteger(const string& prompt);
+    static std::string trim(const std::string& str);
     int age;
     float height, weight;
     string fullName,id,nationality;

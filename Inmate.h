@@ -10,6 +10,7 @@ class Inmate : public Person {
     public:
         //Constructor:
         Inmate();
+        Inmate(const std::string& id) : Person(id) {}
         Inmate(string fullName,string id,string nationality,int age,float height , 
         float weight,string felony,string cage,string sentenceStart,
         long long sentenceLength);
@@ -30,7 +31,6 @@ class Inmate : public Person {
         void addPerson();
         void writeDataToFile();
         void readDataFromFile();
-        void updateDataInFile();
         void removeDataFromFile();
         static vector<Inmate> inmates;
     private:

@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
+#include <algorithm>
 #include <string>
 #include "Person.h"
 using namespace std;
 
-Person::Person()
-{
-}
+Person::Person(){}
+
 Person::Person(string fullName, string id, string nationality, int age, float height, float weight)
 {
     this->fullName = fullName;
@@ -55,11 +55,6 @@ string Person::getFullName()
 void Person::setId(string id)
 {
     this->id = id;
-}
-
-string Person::getId()
-{
-    return id;
 }
 
 void Person::setNationality(string nationality)
@@ -122,7 +117,14 @@ int Person::inputInteger(const string& prompt) {
         return value;
     }
 
-
+// Helper function to trim whitespace from both ends of a string
+std::string Person::trim(const std::string& str) {
+    size_t first = str.find_first_not_of(" \t\n\r");
+    size_t last = str.find_last_not_of(" \t\n\r");
+    if (first == std::string::npos)
+        return "";  // No non-whitespace characters
+    return str.substr(first, (last - first + 1));
+}
 
 
 
@@ -134,10 +136,6 @@ void Person::writeDataToFile()
 // void Person::readDataFromFile() {
 // }
 
-
-void Person::updateDataInFile()
-{
-}
 
 void Person::removeDataFromFile()
 {

@@ -31,7 +31,6 @@ class Staff : public Person{
         void addPerson();
         void writeDataToFile();
         void readDataFromFile();
-        void updateDataInFile();
         void removeDataFromFile();
         static vector<Staff> staffs;
 

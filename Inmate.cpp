@@ -3,6 +3,9 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm> // For std::remove_if
+#include <limits>
+#include <cstdlib> // For system()
 #include "Inmate.h"
 #include "Person.h"
 
@@ -191,53 +194,92 @@ void Inmate::readDataFromFile() {
 
         for (auto& inmate : inmates) {
             inmate.displayInfo();
-            cout<<"-----------------------";
+            cout<<"______________________________________________________________";
         }
         inFile.close();
     } else {
         cout << "Error opening the file for reading." << endl;
     }
 }
-    void Inmate::updateDataInFile()
-    {
-        Person::updateDataInFile();
-        ifstream inFile("data/inmate.txt");
-        ofstream tempFile("data/temp3.txt");
-        string findId;
-        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength)
-        {
-            {
-                if (getId() == findId)
-                {
-                }
-                tempFile << cage << " " << felony << " " << sentenceStart << " "
-                         << sentenceLength << endl;
-            }
-            inFile.close();
-            tempFile.close();
-            remove("data/inmate.txt");
-            rename("data/temp3.txt", "data/inmate.txt");
-        }
+
+//Function to display IDs and handle the deletion process:
+void Inmate::removeDataFromFile() {
+    std::vector<std::string> records;
+    std::string line, targetId;
+
+    system("cls"); // Clear the screen at the beginning
+
+    std::ifstream inFile("data/inmate.csv");
+    if (!inFile.is_open()) {
+        std::cerr << "Error: Unable to open input file. Please check the file path and permissions." << std::endl;
+        return;
     }
 
-    void Inmate::removeDataFromFile()
-    {
-        Person::removeDataFromFile();
-        ifstream inFile("data/inmate.txt");
-        ofstream tempFile("data/temp3.txt");
-        string findId;
-        while (inFile >> cage >> felony >> sentenceStart >> sentenceLength)
-        {
-            {
-                if (getId() != findId)
-                {
-                    tempFile << cage << " " << felony << " " << sentenceStart << " "
-                             << sentenceLength << endl;
-                }
-            }
-            inFile.close();
-            tempFile.close();
-            remove("data/inmate.txt");
-            rename("data/temp3.txt", "data/inmate.txt");
-        }
+    while (std::getline(inFile, line)) {
+        records.push_back(line); // Store each line as a complete record
     }
+    inFile.close();
+
+    if (records.empty()) {
+        std::cout << "Notice: There are no records available to delete. The file is empty." << std::endl;
+        return;
+    }
+
+    do {
+        system("cls"); // Clear the screen before showing IDs
+        std::cout << "Available IDs:\n";
+        for (const auto& record : records) {
+            std::istringstream iss(record);
+            std::getline(iss, line, ','); // Extract ID from record
+            line = Person::trim(line); // Ensure ID is trimmed of whitespace
+            std::cout << line << std::endl;
+        }
+
+        std::cout << "______________________________________________________________\n";
+        std::cout << "Please enter the ID you wish to delete or type 'exit' to terminate the operation: ";
+        std::cin >> targetId; // Use cin to read the next word
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer to remove any leftover characters
+
+        targetId = Person::trim(targetId); // Trim whitespace from user input
+
+        if (targetId == "exit") {
+            std::cout << "Exiting operation." << std::endl;
+            break;
+        }
+
+        bool found = false;
+        std::vector<std::string> updatedRecords;
+
+        for (auto& record : records) {
+            std::istringstream iss(record);
+            std::getline(iss, line, ','); // Extract ID
+            line = Person::trim(line); // Trim the ID
+
+            if (line == targetId) {
+                found = true;
+            } else {
+                updatedRecords.push_back(record);
+            }
+        }
+
+        if (!found) {
+            std::cout << "Warning: The ID '" << targetId << "' was not found in the records. Please try again." << std::endl;
+        } else {
+            std::cout << "Success: The ID '" << targetId << "' has been successfully deleted from the records." << std::endl;
+            records = updatedRecords; // Update the main records vector to reflect the deletion
+            std::ofstream outFile("data/inmate.csv");
+            for (const auto& record : updatedRecords) {
+                outFile << record << std::endl;
+            }
+            outFile.close();
+        }
+
+        std::cout << "Would you like to delete another ID? (yes/no): ";
+        std::getline(std::cin, targetId); // Directly use getline to capture the next line of input
+        if (Person::trim(targetId) != "yes") {
+            std::cout << "No further deletions requested. Exiting now." << std::endl;
+            break;
+        }
+
+    } while (true); // Loop indefinitely until 'exit' is entered
+}

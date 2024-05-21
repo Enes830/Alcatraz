@@ -12,9 +12,11 @@ vector<Inmate> Inmate::inmates;
 
 
 int main() {
-    // Inmate obj;
-    // obj.addPerson();
-    // obj.displayInfo();
+
+  // Inmate inmate("DummyID");  // Assuming constructor still expects an ID
+
+ //  inmate.removeDataFromFile();
+
     int choice;
     int choice1;
     int choice2;
@@ -75,6 +77,10 @@ int main() {
                     }
                     case 4:{
                         system("cls");
+                            Inmate inmate; // Constructor should handle the initialization
+                            inmate.removeDataFromFile(); // This function prompts and deletes
+                            cout << "\n\nPress any button to exit: ";
+                            cin >> test;
                         break;
                     }
                     case 0:{
@@ -144,6 +150,7 @@ int main() {
 
             }
         }while(choice !=0);
+
 
     return 0;
 

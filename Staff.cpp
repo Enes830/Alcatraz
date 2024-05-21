@@ -183,24 +183,6 @@ void Staff::readDataFromFile() {
     }
 }
 
-void Staff::updateDataInFile() {
-    Person::updateDataInFile();
-    ifstream inFile("data/staff.txt");
-    ofstream tempFile("data/temp2.txt");
-    string findId;
-    while (inFile >> job >> salary >> address >> yearJoined)
-    {
-        if (getId() == findId)
-        {
-        }
-        tempFile << job << " " << salary << " " << address << " "
-                 << yearJoined << endl;
-    }
-    inFile.close();
-    tempFile.close();
-    remove("data/staff.txt");
-    rename("data/temp2.txt", "data/staff.txt");
-}
 
 void Staff::removeDataFromFile() {
     Person::removeDataFromFile();
