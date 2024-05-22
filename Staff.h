@@ -10,6 +10,7 @@ class Staff : public Person{
     public:
         //Constructor:
         Staff();
+        Staff(const std::string& id) : Person(id) {}
         Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined);
         //deconstructor:
         virtual ~Staff();
@@ -31,8 +32,8 @@ class Staff : public Person{
         void addPerson();
         void writeDataToFile();
         void readDataFromFile();
-        void removeDataFromFile();
         void searchDataInFile();
+        void removeDataFromFile();
         static vector<Staff> staffs;
 
     private:

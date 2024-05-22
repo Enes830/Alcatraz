@@ -140,6 +140,10 @@ int main() {
                     }
                     case 4:{
                         system("cls");
+                        Staff staff;
+                        staff.removeDataFromFile();
+                        cout << "\n\nPress any button to exit: ";
+                        cin >> test;                        
                         break;
                     }
                     case 0:{

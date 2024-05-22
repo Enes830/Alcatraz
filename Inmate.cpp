@@ -264,7 +264,6 @@ void Inmate::searchDataInFile() {
     }
 }
 
-  
 void Inmate::removeDataFromFile() {
     std::vector<std::string> records;
     std::string line, targetId;
