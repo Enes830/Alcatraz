@@ -204,63 +204,105 @@ void Inmate::readDataFromFile() {
 
 void Inmate::searchDataInFile() {
     ifstream inFile("data/inmate.csv"); // Assuming your CSV file is named "inmate.csv"
-    if (inFile.is_open()) {
-        string line;
-        getline(inFile, line); // Skip the header if your CSV includes headers.
+    if (!inFile.is_open()) {
+        cout << "Error opening the file for reading." << endl;
+        return;
+    }
+
+    string line;
+    getline(inFile, line); // Skip the header if your CSV includes headers.
+
+    vector<string> ids;
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string id;
+        getline(ss, id, ','); // Read the ID
+        id = trim(id); // Trim any whitespace from the ID
+        ids.push_back(id); // Store the ID
+    }
+    inFile.close();
+
+    bool continueSearch = true;
+    while (continueSearch) {
+        cout << "Available IDs: " << endl;
+        for (const string& id : ids) {
+            cout << id << " ";
+        }
+        cout << endl;
 
         cout << "Enter the ID to search: ";
         string targetId;
         cin >> targetId;
+        targetId = trim(targetId); // Trim any whitespace from the input
 
+        inFile.open("data/inmate.csv");
+        if (!inFile.is_open()) {
+            cout << "Error opening the file for reading." << endl;
+            return;
+        }
+        getline(inFile, line); // Skip the header
+
+        bool found = false;
         while (getline(inFile, line)) {
             stringstream ss(line);
             string cell;
             Inmate inmate;
 
             getline(ss, cell, ','); // ID
+            cell = trim(cell); // Trim any whitespace from the cell
             if (cell == targetId) {
                 // Found the matching ID, populate the Inmate object
                 inmate.setId(cell);
 
                 getline(ss, cell, ','); // Full Name
-                inmate.setFullName(cell);
+                inmate.setFullName(trim(cell));
 
                 getline(ss, cell, ','); // Nationality
-                inmate.setNationality(cell);
+                inmate.setNationality(trim(cell));
 
                 getline(ss, cell, ','); // Age
                 try {
-                    inmate.setAge(stoi(cell));
+                    inmate.setAge(stoi(trim(cell)));
                 } catch (const invalid_argument& e) {
                     cerr << "Invalid age format: " << cell << endl;
                     continue;
                 }
-                getline(ss,cell,',');
-                inmate.setHeight(stof(cell));
-                getline(ss,cell,',');
-                inmate.setWeight(stof(cell));
-                getline(ss,cell,',');
-                inmate.setCage(cell);
-                getline(ss,cell,',');
-                inmate.setFelony(cell);
-                getline(ss,cell,',');
-                inmate.setSentenceStart(cell);
-                getline(ss,cell,',');
-                inmate.setSentenceLength(stoi(cell));
-                
+                getline(ss, cell, ','); // Height
+                inmate.setHeight(stof(trim(cell)));
 
-                // ... (similarly populate other fields)
+                getline(ss, cell, ','); // Weight
+                inmate.setWeight(stof(trim(cell)));
+
+                getline(ss, cell, ','); // Cage
+                inmate.setCage(trim(cell));
+
+                getline(ss, cell, ','); // Felony
+                inmate.setFelony(trim(cell));
+
+                getline(ss, cell, ','); // Sentence Start
+                inmate.setSentenceStart(trim(cell));
+
+                getline(ss, cell, ','); // Sentence Length
+                inmate.setSentenceLength(stoi(trim(cell)));
 
                 // Display the information for the matching ID
                 inmate.displayInfo();
                 cout << "-----------------------" << endl;
+                found = true;
                 break; // Exit the loop after finding the match
             }
         }
 
         inFile.close();
-    } else {
-        cout << "Error opening the file for reading." << endl;
+
+        if (!found) {
+            cout << "ID not found." << endl;
+        }
+
+        cout << "Do you want to search for another ID? (y/n): ";
+        char choice;
+        cin >> choice;
+        continueSearch = (choice == 'y' || choice == 'Y');
     }
 }
 
