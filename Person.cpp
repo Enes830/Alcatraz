@@ -111,7 +111,7 @@ void Person::addPerson()
     weight = inputInteger("Enter weight: ");
 }
 
-// Function for making the user gives Integers:
+// Function for prompt the user for an integer input:
 int Person::inputInteger(const string& prompt) {
         int value;
         cout << prompt;
@@ -124,10 +124,10 @@ int Person::inputInteger(const string& prompt) {
     }
 
 // Helper function to trim whitespace from both ends of a string:
-std::string Person::trim(const std::string& str) {
+string Person::trim(const string& str) {
     size_t first = str.find_first_not_of(" \t\n\r");
     size_t last = str.find_last_not_of(" \t\n\r");
-    if (first == std::string::npos)
+    if (first == string::npos)
         return "";  // No non-whitespace characters
     return str.substr(first, (last - first + 1));
 }

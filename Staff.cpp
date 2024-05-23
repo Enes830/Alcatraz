@@ -58,26 +58,31 @@ int Staff::getYearJoined(){
 void Staff::displayInfo(){
     cout<<endl;
     Person::displayInfo();
-    cout<<"Job: "<<job<<endl;
-    cout<<"Salary: "<<salary<<" $"<<endl;
-    cout<<"Address: "<<address<<endl;
-    cout<<"Year Joined: "<<yearJoined<<endl;
-
+        Person::displayInfo();
+        cout << "Job: " << job << endl;
+        cout << "Salary: " << salary << " $" << endl;
+        cout << "Address: " << address << endl;
+        cout << "Year Joined: " << yearJoined << endl;
+        // Demonstrating the incrementSalary functions
+        incrementSalary(45.0, 200); // Example values for percentage and monthly bonus
+        cout << "Increased Salary for %45 and $200 bonus: " << salary << " $" << endl;
 }
 
 // Function for increase salary:
-void Staff::incrementSalary(double percentage){
-    if (percentage>0)
-        salary *=percentage;
-}
-void Staff::incrementSalary(int monthlyBonus){
-    if (monthlyBonus>0)
-        salary += monthlyBonus;
-}
-void Staff::incrementSalary(double percentage,int monthlyBonus){
-    incrementSalary(percentage);
-    incrementSalary(monthlyBonus);
-}
+void Staff::incrementSalary(double percentage) {
+        if (percentage > 0)
+            salary *= (1 + percentage / 100); // Correcting multiplication to increase by percentage
+    }
+
+    void Staff::incrementSalary(int monthlyBonus) {
+        if (monthlyBonus > 0)
+            salary += monthlyBonus;
+    }
+
+    void Staff::incrementSalary(double percentage, int monthlyBonus) {
+        incrementSalary(percentage);
+        incrementSalary(monthlyBonus);
+    }
 
 // Function for adding new Staff:
 void Staff::addPerson(){
