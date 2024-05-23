@@ -390,9 +390,9 @@ void Inmate::removeDataFromFile() {
             outFile.close();
         }
 
-        std::cout << "Would you like to delete another ID? (yes/no): ";
+        std::cout << "Would you like to delete another ID? (y/n): ";
         std::getline(std::cin, targetId); // Directly use getline to capture the next line of input
-        if (Person::trim(targetId) != "yes") {
+        if (Person::trim(targetId) != "y") {
             std::cout << "No further deletions requested. Exiting now." << std::endl;
             break;
         }
