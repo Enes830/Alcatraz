@@ -8,25 +8,29 @@ using namespace std;
 
 class Inmate : public Person {
     public:
-        //Constructor:
+        // Constructor:
         Inmate();
         Inmate(const std::string& id) : Person(id) {}
         Inmate(string fullName,string id,string nationality,int age,float height , 
         float weight,string felony,string cage,string sentenceStart,
         long long sentenceLength);
-        //deconstructor:
+
+        // Deconstructor:
         virtual ~Inmate();
-        //Declaring Setters:
+
+        // Declaring Setters:
         void setFelony(string felony);
         void setCage(string cage);
         void setSentenceStart(string sentenceStart);
         void setSentenceLength(long long sentenceLength);
-         //Declaring Getters:
+
+        // Declaring Getters:
         string getFelony();
         string getCage();
         string getSentenceStart();
         long long getSentenceLength();
-        //Declaring Functions:
+
+        // Declaring Functions:
         void displayInfo();
         void addPerson();
         void writeDataToFile();
@@ -34,6 +38,7 @@ class Inmate : public Person {
         void removeDataFromFile();
         void searchDataInFile();
         static vector<Inmate> inmates;
+        
     private:
         //Declaring Attributes:
         string cage,sentenceStart,felony;

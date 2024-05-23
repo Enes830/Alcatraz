@@ -11,7 +11,7 @@
 
 using namespace std;
 
-
+// Constructor:
 Staff::Staff(){}
 Staff::Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined){
     Person::setAll(fullName,id,nationality,age,height,weight);
@@ -21,39 +21,40 @@ Staff::Staff(string fullName,string id,string nationality,int age,float height ,
     this -> yearJoined = yearJoined;
 }
 
-Staff::~Staff() {}
+// Deconstructor:  
+Staff::~Staff(){}
 
+// Initialize Setters:
 void Staff::setJob(string job){
     this -> job = job;
 }
-string Staff::getJob(){
-    return job;
-}
-
 void Staff::setAddress(string address){
     this -> address = address;
-}
-string Staff::getAddress(){
-    return address;
 }
 
 void Staff::setSalary(int salary){
     this -> salary = salary;
 }
-int Staff::getSalary(){
-    return salary;
-}
 
 void Staff::setYearJoined(int yearJoined){
     this -> yearJoined = yearJoined;
+}
+
+// Initialize Getters:
+string Staff::getJob(){
+    return job;
+}
+string Staff::getAddress(){
+    return address;
+}
+int Staff::getSalary(){
+    return salary;
 }
 int Staff::getYearJoined(){
     return yearJoined;
 }
 
-
-
-
+// Function for displaying all the values of Staff:
 void Staff::displayInfo(){
     cout<<endl;
     Person::displayInfo();
@@ -63,6 +64,8 @@ void Staff::displayInfo(){
     cout<<"Year Joined: "<<yearJoined<<endl;
 
 }
+
+// Function for increase salary:
 void Staff::incrementSalary(double percentage){
     if (percentage>0)
         salary *=percentage;
@@ -76,6 +79,7 @@ void Staff::incrementSalary(double percentage,int monthlyBonus){
     incrementSalary(monthlyBonus);
 }
 
+// Function for adding new Staff:
 void Staff::addPerson(){
     Person::addPerson();
 
@@ -92,6 +96,8 @@ void Staff::addPerson(){
 
 
 //FILE HANDLING:
+
+// WRITER:
 void Staff::writeDataToFile()
 {
     Person::writeDataToFile();
@@ -128,6 +134,7 @@ void Staff::writeDataToFile()
     }
 }
 
+// READER:
 void Staff::readDataFromFile() {
     ifstream inFile("data/staff.csv"); // Assuming your CSV file is named "staff.csv"
     if (inFile.is_open()) {
@@ -186,6 +193,7 @@ void Staff::readDataFromFile() {
     }
 }
 
+// SEARCHER:
 void Staff::searchDataInFile() {
     ifstream inFile("data/staff.csv"); // Assuming your CSV file is named "staff.csv"
     if (!inFile.is_open()) {
@@ -289,6 +297,7 @@ void Staff::searchDataInFile() {
     }
 }
 
+// REMOVER:
 void Staff::removeDataFromFile() {
     std::vector<std::string> records;
     std::string line, targetId;

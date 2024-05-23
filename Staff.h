@@ -8,23 +8,27 @@ using namespace std;
 
 class Staff : public Person{
     public:
-        //Constructor:
+        // Constructor:
         Staff();
         Staff(const std::string& id) : Person(id) {}
         Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined);
-        //deconstructor:
+
+        // Deconstructor:
         virtual ~Staff();
-        //Declaring Setters:
+
+        // Declaring Setters:
         void setJob(string job);
         void setAddress(string address);
         void setSalary(int salary);
         void setYearJoined(int yearJoined);
-        //Declaring Getters:
+
+        // Declaring Getters:
         string getJob();
         string getAddress();
         int getSalary();
         int getYearJoined();
-        //Declaring Functions:
+
+        // Declaring Functions:
         void incrementSalary(double percentage);
         void incrementSalary(double percentage,int monthlyBonus);
         void incrementSalary(int monthlyBonus);
@@ -37,7 +41,7 @@ class Staff : public Person{
         static vector<Staff> staffs;
 
     private:
-        //Declaring Attributes:
+        // Declaring Attributes:
         string job,address;
         int salary,yearJoined;
 

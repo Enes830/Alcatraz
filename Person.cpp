@@ -6,8 +6,8 @@
 #include "Person.h"
 using namespace std;
 
+// Constructor:
 Person::Person(){}
-
 Person::Person(string fullName, string id, string nationality, int age, float height, float weight)
 {
     this->fullName = fullName;
@@ -18,10 +18,10 @@ Person::Person(string fullName, string id, string nationality, int age, float he
     this->weight = weight;
 }
 
-Person::~Person()
-{
-}
+// Deconstructor:          
+Person::~Person(){}
 
+// Function to set all the values of Person:  
 void Person::setAll(string fullName, string id, string nationality, int age, float height, float weight)
 {
     this->fullName = fullName;
@@ -32,6 +32,7 @@ void Person::setAll(string fullName, string id, string nationality, int age, flo
     this->weight = weight;
 }
 
+// Function for displaying all the values of Person:
 void Person::displayInfo() const
 {
     cout << "Full Name: " << fullName << endl;
@@ -42,14 +43,10 @@ void Person::displayInfo() const
     cout << "Weight: " << weight << endl;
 }
 
+// Initialize Setters:
 void Person::setFullName(string fullName)
 {
     this->fullName = fullName;
-}
-
-string Person::getFullName()
-{
-    return fullName;
 }
 
 void Person::setId(string id)
@@ -62,14 +59,28 @@ void Person::setNationality(string nationality)
     this->nationality = nationality;
 }
 
-string Person::getNationality()
-{
-    return nationality;
-}
-
 void Person::setAge(int age)
 {
     this->age = age;
+}
+
+void Person::setHeight(float height){
+    this->height=height;
+}
+
+void Person::setWeight(float weight){
+    this->weight=weight;
+}
+
+// Initialize Getters:
+string Person::getFullName()
+{
+    return fullName;
+}
+
+string Person::getNationality()
+{
+    return nationality;
 }
 
 int Person::getAge()
@@ -77,22 +88,15 @@ int Person::getAge()
     return age;
 }
 
-void Person::setHeight(float height){
-    this->height=height;
-}
-
 float Person::getHeight(){
     return height;
-}
-
-void Person::setWeight(float weight){
-    this->weight=weight;
 }
 
 float Person::getWeight(){
     return weight;
 }
 
+// Function for adding new Person:
 void Person::addPerson()
 {
     cout << "Enter full name: ";
@@ -107,6 +111,7 @@ void Person::addPerson()
     weight = inputInteger("Enter weight: ");
 }
 
+// Function for making the user gives Integers:
 int Person::inputInteger(const string& prompt) {
         int value;
         cout << prompt;
@@ -118,7 +123,7 @@ int Person::inputInteger(const string& prompt) {
         return value;
     }
 
-// Helper function to trim whitespace from both ends of a string
+// Helper function to trim whitespace from both ends of a string:
 std::string Person::trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\n\r");
     size_t last = str.find_last_not_of(" \t\n\r");
@@ -128,18 +133,24 @@ std::string Person::trim(const std::string& str) {
 }
 
 
-
 // FILE HANDLING:
+
+// WRITER:
 void Person::writeDataToFile()
 {
 }
+
+// READER:
+void Person::readDataFromFile() 
+{
+}
+
+//SEARCHER:
 void Person::searchDataInFile()
 {    
 }
-// void Person::readDataFromFile() {
-// }
 
-
+// REMOVER:
 void Person::removeDataFromFile()
 {
 }

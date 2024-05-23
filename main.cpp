@@ -12,17 +12,12 @@ vector<Inmate> Inmate::inmates;
 
 
 int main() {
-
-  // Inmate inmate("DummyID");  // Assuming constructor still expects an ID
-
- //  inmate.removeDataFromFile();
-
     int choice;
     int choice1;
     int choice2;
     do {
         system("cls");
-        system("Color 2");
+        system("Color 7");
         string test;
 
         cout << "Prison Management System\n\n";
@@ -38,6 +33,7 @@ int main() {
         switch (choice) {
             case 1: {   
                 do{
+                system("Color 6");
                 system("cls");
                 cout << "==================================="<<endl;
                 cout<<"[1] Add Inmate"<<endl;
@@ -52,6 +48,7 @@ int main() {
                 switch(choice1){
                     case 1:{
                         system("cls");
+                        system("Color 2");
                         Inmate newInmate;
                         newInmate.addPerson();
                         newInmate.writeDataToFile();
@@ -63,6 +60,7 @@ int main() {
                     case 2:{
                         cout<<"2";
                         system("cls");
+                        system("Color 5");
                         Inmate newInmate;
                         cout << "List of Inmates:\n";
                         newInmate.readDataFromFile();
@@ -72,6 +70,7 @@ int main() {
                     }
                     case 3:{
                         system("cls");
+                        system("Color 3");
                         Inmate newInmate;
                         newInmate.searchDataInFile();
                         cout << "\n\nPress any button to exit:";
@@ -79,6 +78,7 @@ int main() {
                         break;
                     }
                     case 4:{
+                        system("Color 4");
                         system("cls");
                             Inmate inmate; // Constructor should handle the initialization
                             inmate.removeDataFromFile(); // This function prompts and deletes
@@ -98,6 +98,7 @@ int main() {
     } 
             case 2:{
                 do{
+                system("Color 6");
                 system("cls");
                 cout << "==================================="<<endl;
                 cout<<"[1] Add Employee"<<endl;
@@ -112,6 +113,7 @@ int main() {
                 switch(choice2){
                     case 1:{
                         system("cls");
+                        system("Color 2");           
                         Staff newEmployee;
                         newEmployee.addPerson();
                         newEmployee.writeDataToFile();
@@ -122,6 +124,7 @@ int main() {
                     }
                     case 2:{
                         system("cls");
+                        system("Color 5");
                         Staff newEmployee;
                         cout << "List of Inmates:\n";
                         newEmployee.readDataFromFile();
@@ -132,6 +135,7 @@ int main() {
                     }
                     case 3:{
                         system("cls");
+                        system("Color 3");
                         Staff newEmployee;
                         newEmployee.searchDataInFile();
                         cout << "\n\nPress any button to exit:";
@@ -139,6 +143,7 @@ int main() {
                         break;
                     }
                     case 4:{
+                        system("Color 4");
                         system("cls");
                         Staff staff;
                         staff.removeDataFromFile();

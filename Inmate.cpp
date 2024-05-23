@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// Constructor:
 Inmate::Inmate() {}
 Inmate::Inmate(string fullName, string id, string nationality, int age, float height, float weight, string felony, string cage, string sentenceStart, long long  sentenceLength)
 {
@@ -21,44 +22,51 @@ Inmate::Inmate(string fullName, string id, string nationality, int age, float he
     this->sentenceLength = sentenceLength;
 }
 
-Inmate::~Inmate() {}
+// Deconstructor:          
+Inmate::~Inmate(){}
 
+// Initialize Setters:
 void Inmate::setFelony(string felony)
 {
     this->felony = felony;
 }
-string Inmate::getFelony()
-{
-    return felony;
-};
 
 void Inmate::setCage(string cage)
 {
     this->cage = cage;
 }
-string Inmate::getCage()
-{
-    return cage;
-};
 
 void Inmate::setSentenceStart(string sentenceStart)
 {
     this->sentenceStart = sentenceStart;
 }
-string Inmate::getSentenceStart()
-{
-    return sentenceStart;
-};
 
 void Inmate::setSentenceLength(long long sentenceLength)
 {
     this->sentenceLength = sentenceLength;
 }
+
+// Initialize Getters:
+string Inmate::getFelony()
+{
+    return felony;
+};
+string Inmate::getCage()
+{
+    return cage;
+};
+
+string Inmate::getSentenceStart()
+{
+    return sentenceStart;
+};
+
 long long Inmate::getSentenceLength()
 {
     return sentenceLength;
 };
 
+// Overloaded Function for displaying all the values of Inmate:
 void Inmate::displayInfo()
 {
     cout << endl;
@@ -69,6 +77,7 @@ void Inmate::displayInfo()
     cout << "Sentence Length: " << sentenceLength << " Days" << endl;
 }
 
+// Overloaded Function for adding new Inmate:
 void Inmate::addPerson()
 {
     Person::addPerson();
@@ -87,9 +96,10 @@ void Inmate::addPerson()
 }
 
 // FILE HANDLING:
+
+// WRITER:
 void Inmate::writeDataToFile()
 {
-   // Person::writeDataToFile();
     ifstream inFile("data/inmate.csv");
     bool isEmpty = inFile.peek() == EOF; // Check if the file is empty
 
@@ -126,6 +136,7 @@ void Inmate::writeDataToFile()
     }
 }
 
+// READER:
 void Inmate::readDataFromFile() {
     ifstream inFile("data/inmate.csv"); // Assuming your CSV file is named "inmate.csv"
     if (inFile.is_open()) {
@@ -202,6 +213,7 @@ void Inmate::readDataFromFile() {
     }
 }
 
+//SEARCHER:
 void Inmate::searchDataInFile() {
     ifstream inFile("data/inmate.csv"); // Assuming your CSV file is named "inmate.csv"
     if (!inFile.is_open()) {
@@ -306,6 +318,7 @@ void Inmate::searchDataInFile() {
     }
 }
 
+// REMOVER:
 void Inmate::removeDataFromFile() {
     std::vector<std::string> records;
     std::string line, targetId;
