@@ -1,14 +1,8 @@
 ID,Full Name,Nationality,Age,Height,Weight,Cage,Felony,Sentence Start,Sentence Length
-1	,Abdullah,	Yemen	,22,	170,	144,	OP2,	fwa,	2/2/2,	2222,
-2,Hamxa,	OP,	23,	146,	34,	ffwe3,	fef,	3434,	3333,
-3	,Abdullah,	Yemen	,22,	170,	144,	OP2,	fwa,	2/2/2,	2222,
-4,Hamxa,	OP,	23,	146,	34,	ffwe3,	fef,	3434,	3333,
-5	,Abdullah,	Yemen	,22,	170,	144,	OP2,	fwa,	2/2/2,	2222,
-6,Hamxa,	OP,	23,	146,	34,	ffwe3,	fef,	3434,	3333,
-7	,Abdullah,	Yemen	,22,	170,	144,	OP2,	fwa,	2/2/2,	2222,
-8,Hamxa,	OP,	23,	146,	34,	ffwe3,	fef,	3434,	3333,
-9	,Abdullah,	Yemen	,22,	170,	144,	OP2,	fwa,	2/2/2,	2222,
-10,Hamxa,	OP,	23,	146,	34,	ffwe3,	fef,	3434,	3333,
-
-12,AHMETOMAR asddasd,dasdasd,22,2,2,a,2,a,2
-13,A,a,2,2,2,2,2,2,2
+1, Alphonse Gabriel Capone, American, 33, 179.5, 91.9, AP-001, Tax evasion, 21/08/1934, 1825
+2, George Kelly, American, 39, 193.1, 86.7, AP-002, Kidnapping, 04/09/1934, 6205
+3, Alvin Karpis, Canadian,29 ,178.6, 58.5,AP-003, Kidnapping, 15/08/1936, 9490
+4, Robert Stroud, American, 52,191.2,61.5,AP-004,Murder,16/12/1942,6205
+5, James Bulger, American, 30, 175.3,74.4, AP-005, Robbery,03/06/1959, 1095
+6, Clarence Carnes, American , 18, 183.5,91.5,AP-006, Murder,06/07/1945,10000
+7, Joseph Crtzer, American, 29, 185.2,74.1,AP-007, Robbery, 24/08/1940,9125

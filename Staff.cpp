@@ -57,7 +57,6 @@ int Staff::getYearJoined(){
 // Function for displaying all the values of Staff:
 void Staff::displayInfo(){
     cout<<endl;
-    Person::displayInfo();
         Person::displayInfo();
         cout << "Job: " << job << endl;
         cout << "Salary: " << salary << " $" << endl;
