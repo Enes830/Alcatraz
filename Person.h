@@ -11,7 +11,7 @@ class Person {
 public:
     // Constructor:
     Person();
-    Person(const std::string& id) : id(id) {}
+    Person(const string& id) : id(id) {}
     Person(string fullName,string id,string nationality,int age,float height ,float weight);
 
     // Deconstructor:
@@ -27,7 +27,7 @@ public:
 
     // Declaring Getters:
     string getFullName();
-    virtual std::string getId() const { return id; }
+    virtual string getId() const { return id; }
     string getNationality();
     int getAge();
     float getHeight();
@@ -46,7 +46,7 @@ public:
 protected:
     // Declaring Attributes:
     int inputInteger(const string& prompt);
-    static std::string trim(const std::string& str);
+    static string trim(const string& str);
     int age;
     float height, weight;
     string fullName,id,nationality;

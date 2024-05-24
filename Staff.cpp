@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib> // For system()
-#include <algorithm> // For std::remove_if
+#include <algorithm> // For remove_if
 #include <limits>
 #include "Staff.h"
 #include "Person.h"
@@ -64,8 +64,8 @@ void Staff::displayInfo(){
         cout << "Address: " << address << endl;
         cout << "Year Joined: " << yearJoined << endl;
         // Demonstrating the incrementSalary functions
-        incrementSalary(45.0, 200); // Example values for percentage and monthly bonus
-        cout << "Increased Salary for %45 and $200 bonus: " << salary << " $" << endl;
+        incrementSalary(15.0, 200); // Example values for percentage and monthly bonus
+        cout << "Increased Salary for %15 and $200 bonus: " << salary << " $" << endl;
 }
 
 // Function for increase salary:
@@ -304,55 +304,55 @@ void Staff::searchDataInFile() {
 
 // REMOVER:
 void Staff::removeDataFromFile() {
-    std::vector<std::string> records;
-    std::string line, targetId;
+    vector<string> records;
+    string line, targetId;
 
     system("cls"); // Clear the screen at the beginning
 
-    std::ifstream inFile("data/staff.csv");
+    ifstream inFile("data/staff.csv");
     if (!inFile.is_open()) {
-        std::cerr << "Error: Unable to open input file. Please check the file path and permissions." << std::endl;
+        cerr << "Error: Unable to open input file. Please check the file path and permissions." << endl;
         return;
     }
 
-    while (std::getline(inFile, line)) {
+    while (getline(inFile, line)) {
         records.push_back(line); // Store each line as a complete record
     }
     inFile.close();
 
     if (records.empty()) {
-        std::cout << "Notice: There are no records available to delete. The file is empty." << std::endl;
+        cout << "Notice: There are no records available to delete. The file is empty." << endl;
         return;
     }
 
     do {
         system("cls"); // Clear the screen before showing IDs
-        std::cout << "Available IDs:\n";
+        cout << "Available IDs:\n";
         for (const auto& record : records) {
-            std::istringstream iss(record);
-            std::getline(iss, line, ','); // Extract ID from record
+            istringstream iss(record);
+            getline(iss, line, ','); // Extract ID from record
             line = Person::trim(line); // Ensure ID is trimmed of whitespace
-            std::cout << line << std::endl;
+            cout << line <<" ";
         }
 
-        std::cout << "______________________________________________________________\n";
-        std::cout << "Please enter the ID you wish to delete or type 'exit' to terminate the operation: ";
-        std::cin >> targetId; // Use cin to read the next word
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer to remove any leftover characters
+        cout << "\n________________________________________________________________________________________\n\n";
+        cout << "Please enter the ID you wish to delete or type 'exit' to terminate the operation: ";
+        cin >> targetId; // Use cin to read the next word
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer to remove any leftover characters
 
         targetId = Person::trim(targetId); // Trim whitespace from user input
 
         if (targetId == "exit") {
-            std::cout << "Exiting operation." << std::endl;
+            cout << "Exiting operation." << endl;
             break;
         }
 
         bool found = false;
-        std::vector<std::string> updatedRecords;
+        vector<string> updatedRecords;
 
         for (auto& record : records) {
-            std::istringstream iss(record);
-            std::getline(iss, line, ','); // Extract ID
+            istringstream iss(record);
+            getline(iss, line, ','); // Extract ID
             line = Person::trim(line); // Trim the ID
 
             if (line == targetId) {
@@ -363,21 +363,21 @@ void Staff::removeDataFromFile() {
         }
 
         if (!found) {
-            std::cout << "Warning: The ID '" << targetId << "' was not found in the records. Please try again." << std::endl;
+            cout << "Warning: The ID '" << targetId << "' was not found in the records. Please try again." << endl;
         } else {
-            std::cout << "Success: The ID '" << targetId << "' has been successfully deleted from the records." << std::endl;
+            cout << "Success: The ID '" << targetId << "' has been successfully deleted from the records." << endl;
             records = updatedRecords; // Update the main records vector to reflect the deletion
-            std::ofstream outFile("data/staff.csv");
+            ofstream outFile("data/staff.csv");
             for (const auto& record : updatedRecords) {
-                outFile << record << std::endl;
+                outFile << record << endl;
             }
             outFile.close();
         }
 
-        std::cout << "Would you like to delete another ID? (yes/no): ";
-        std::getline(std::cin, targetId); // Directly use getline to capture the next line of input
+        cout << "Would you like to delete another ID? (y/n): ";
+        getline(cin, targetId); // Directly use getline to capture the next line of input
         if (Person::trim(targetId) != "yes") {
-            std::cout << "No further deletions requested. Exiting now." << std::endl;
+            cout << "No further deletions requested. Exiting now." << endl;
             break;
         }
 

@@ -10,7 +10,7 @@ class Staff : public Person{
     public:
         // Constructor:
         Staff();
-        Staff(const std::string& id) : Person(id) {}
+        Staff(const string& id) : Person(id) {}
         Staff(string fullName,string id,string nationality,int age,float height ,float weight,string job,int salary,string address,int yearJoined);
 
         // Deconstructor:
